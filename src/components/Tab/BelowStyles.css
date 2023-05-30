@@ -1,0 +1,44 @@
+.below-img{
+    width: 50px;
+}
+
+.below-main-div{
+    text-align: center;
+    margin: 100px 0 50px;
+}
+
+.below-heading{
+    font-size: 3rem;
+    display: inline-block;
+    width: 70%;
+    text-align: center;
+    margin: 90px 0;
+    color: #001540;
+}
+
+.below-heading span {
+    color: #0047cc;
+}
+
+.below-subhead{
+    color: #001540;
+}
+
+.below-p{
+    color: #3f588d;
+    line-height: 1.5;
+    width: 88%;
+    display: inline-block;
+    margin-top: -10px;
+}
+
+@media (max-width:1200px) {
+  .below-heading{
+    width: 90%;
+    font-size: 2rem;
+  }  
+
+  .below-main-div div{
+    margin-bottom: 30px;
+  }
+}

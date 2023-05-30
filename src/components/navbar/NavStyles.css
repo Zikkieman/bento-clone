@@ -1,0 +1,65 @@
+.div-nav{
+    background-color: #f5f6fa;
+}
+
+.div-app{
+    padding-left: 15%;
+}
+
+.first-drawer-div{
+    position: relative;
+    top: 30px;
+    margin: 0 40px 0px 40px;
+}
+
+.first-button{
+background-color: #fff;
+padding: 8px 70px 8px 70px;
+border: none;
+color: #de6c3b;
+font-size: 18px;
+border-radius: 25px;
+}
+
+.first-button:hover{
+    -webkit-transform: translateY(-1px);
+	transform: translateY(-1px);
+    background-color: #f3e7e2;
+    opacity: 1;
+    color: #de6c3b;  
+}
+
+.second-drawer-div{
+position: relative;
+top: 40px;
+}
+
+.second-button{
+background-color: #0047cc;
+border: none;
+padding: 8px 60px 8px 60px;
+margin: 0 40px 20px 40px;
+color: #fff;
+border-radius: 25px;
+font-size: 16px;
+}
+
+.second-button:hover{
+    background-color: #013eae;
+    -webkit-transform: translateY(-1px);
+	transform: translateY(-1px) 
+}
+
+.home-link{
+    text-decoration: none;
+}
+
+.signin-link{
+    /* padding: 0 100px; */
+    margin-left: 55%;
+    margin-right: 30px;
+}
+
+.signup-link{
+    margin-left: "3%",
+}

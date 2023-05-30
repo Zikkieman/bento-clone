@@ -1,0 +1,94 @@
+.tab-headword{
+    font-size: 2.1rem;
+    line-height: 1.3;
+    color: #001540;
+}
+
+
+.tab-div{
+    text-align: left;
+}
+
+.tab-p{
+    font-size: 1.2rem;
+    color: #3f588d;
+}
+
+.tab-list{
+    list-style-type: none;
+    color: #3f588d;
+}
+
+.lists{
+    padding: 7px;
+    display: inline-block;
+    margin-left: -10px;
+}
+
+.tab-butt{
+    padding: 14px 30px;
+    border-radius: 25px;
+    border-style: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #0047cc;
+    margin-top: 30px;
+}
+
+.tab-span{
+    margin-left: 10px;
+}
+
+.list-icon{
+    display: inline-block;
+    width: 30px;
+    position: relative;
+    right: 38px;
+    margin-right: -25px;
+    top: 7px;
+}
+
+.tab-pic{
+    width: 100%;
+    margin-left: 20px;
+}
+
+.download{
+    margin-right: 20px;
+    width: 25%;
+    margin-top: 20px;
+}
+
+.download2{
+    width: 23%;
+    margin-top: 20px;
+}
+
+.tab-headword2{
+    font-size: 2.1rem;
+    line-height: 1.3;
+    color: #001540;
+}
+
+@media (max-width: 1200px ) {
+    .tab-headword{
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #001540;
+    }
+    .tab-headword2{
+        font-size: 1.2rem;
+        line-height: 1.3;
+        font-weight: bold;
+        color: #001540;
+    }
+
+    .tab-p{
+        font-size: 1rem;
+    }
+
+    .tab-butt{
+        padding: 10px 35%;
+    }
+}
