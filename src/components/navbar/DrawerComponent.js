@@ -27,13 +27,13 @@ export const DrawerComp = () => {
         anchor="right"
       >
         <div className="first-drawer-div">
-          <Link to="/signin">
+          <Link to="/sign-in">
             <button className="first-button">Sign In</button>
           </Link>
         </div>
 
         <div className="second-drawer-div">
-          <Link to="/signup">
+          <Link to="/sign-up">
             <button className="second-button">Get Started</button>
           </Link>
         </div>

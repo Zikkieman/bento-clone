@@ -81,7 +81,7 @@
 @media (max-width: 1200px) {
   .pad-div{
     margin-left: 0px;
-    padding-left: 20px;
+    padding-left: 10px;
   }
   .headword-div{
     
@@ -99,13 +99,12 @@
     padding-top: 30px;
   }
   .globe-img{
-    width: 400px;
+    width: 320px;
   }
 
   .first-banner-button{
     width: 60%;
     margin: 20px auto;
-    
     padding: 10px 0;
   }
   
