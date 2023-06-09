@@ -1,0 +1,148 @@
+.main-signin-div {
+  padding: 10px 7%;
+
+  .signin-nav {
+    h4 {
+      display: inline-block;
+      color: black;
+    }
+
+    .spacer {
+      display: inline-block;
+      height: 10px;
+      width: 70%;
+    }
+   
+
+    @media (max-width: 1000px) {
+      .spacer {
+        display: inline-block;
+        width: 8%;
+      }
+    }
+
+    @media (min-width: 1020px) and (max-width: 1100px) {
+      .spacer {
+        display: inline-block;
+        width: 63%;
+      }
+    }
+   
+    
+
+    span {
+      display: inline-block;
+      color: #7c828d;
+    }
+
+    button {
+      color: #0047cc;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-left: 1%;
+      background-color: #fff;
+      padding: 7px 17px;
+      border: solid 1px #7c828d;
+      border-radius: 5px;
+
+      &:hover {
+        transform: translateY(-0.25em);
+        transition-duration: 0.6s;
+        -webkit-transform: translateY(-3px);
+      }
+    }
+  }
+
+  .signin-div {
+    display: inline-block;
+    margin: 7% 30%;
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: #3c4049;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    .signin-input-field {
+      width: 400px;
+      height: 25px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      padding: 7px 14px;
+      border-color: #dfe1e5;
+
+      border-style: groove;
+
+      &:hover {
+        border-color: rgb(163, 163, 163);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .signin-input-field {
+        width: 310px;
+        display: inline-block;
+      }
+    }
+    .warning {
+      display: block;
+      margin-top: -20px;
+      margin-bottom: 20px;
+      font-size: 0.8rem;
+      color: #d4112c;
+    }
+
+    .visible-span {
+      margin-top: 0;
+      position: relative;
+      bottom: 53px;
+      left: 400px;
+
+      .visible {
+        color: #d4112c;
+        margin-top: 0px;
+        margin-bottom: 20px;
+      }
+    }
+
+    button {
+      display: flexbox;
+      justify-items: space-between;
+      padding: 7px 20px;
+      border-style: none;
+      color: #fff;
+      background-color: #0047cc;
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .first-signin-button {
+      margin-right: 20px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .signin-div {
+      margin: 7% 2%;
+    }
+  }
+
+  @media (min-width: 1020px) and (max-width: 1050px) {
+    .signin-div {
+      margin: 7% 20%;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .main-signin-div {
+    padding: 10px 3%;
+  }
+}

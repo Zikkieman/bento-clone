@@ -8,6 +8,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import "./FifthStyles.css";
 import {SimpleAccordion} from "./accordion/AccComp"
 import { ResponsiveAcc} from "./accordion/SmallAccComp";
+import { Link } from "react-router-dom";
 
 export const Fifth = () => {
   const theme = useTheme()
@@ -28,8 +29,8 @@ export const Fifth = () => {
             company.
           </p>
         </div>
-        <button className="fifth-first-button">Create An Account</button>
-        <button className="fifth-second-button">Request A Demo</button>
+       <Link to="/sign-up"><button className="fifth-first-button">Create An Account</button></Link> 
+        <Link to="/sign-up"><button className="fifth-second-button">Request A Demo</button></Link>
       </div>
       <hr />
       {

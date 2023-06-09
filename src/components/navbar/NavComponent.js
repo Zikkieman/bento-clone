@@ -43,13 +43,15 @@ export const Navbar = () => {
               <Link to="/sign-in" className="signin-link">
                 <Button
                   variant="text"
-                  sx={{ color: "#000e29", fontSize: "14px", }}
+                  className="signin-butt"
+                  sx={{ color: "#000e29", fontSize: "14px", padding: "5px 20px", borderRadius: "25px" }}
                 >
-                  SIGN UP
+                  Sign In
                 </Button>
                 </Link>
-                <Link to="/signup" className="signup-link">
+                <Link to="/accttype" className="signup-link">
                 <Button
+                className="signin-butt"
                   variant="contained"
                   sx={{
                     
