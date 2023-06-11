@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../context/user.context";
 import { Link } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up.styles.scss";
@@ -8,10 +9,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import { Button } from "@mui/material";
-// import Button from "../button/button.component";
-import { IconButton } from "@mui/material";
-// import CountrySelector from "./country-list.component";
-// import PhoneInput from "react-phone-number-input";
+
 
 const defaultFormValues = {
   companyName: "",
@@ -33,7 +31,6 @@ const SignUpForm = (props) => {
   function handleAgreement(event) {
     setAgreement(event.target.checked);
   }
-  // const { value, options, changeHandler, number, changeNumber } = props;
   const [formFields, setFormFields] = useState(defaultFormValues);
   const {
     companyName,
@@ -44,14 +41,14 @@ const SignUpForm = (props) => {
     password,
     confirmPassword,
   } = formFields;
-  // console.log(formFields);
 
   const resetFormFields = () => {
     setFormFields(defaultFormValues);
   };
 
-  // const options = useMemo(() => countryList().getData(), []);
-  // console.log(options);
+  const {setCurrentUser} = useContext(UserContext);
+  const {currentUser} = useContext(UserContext)
+  console.log(currentUser)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -67,7 +64,7 @@ const SignUpForm = (props) => {
         password
       );
       const { user } = response;
-      console.log(response);
+      setCurrentUser(user);
       const userDocRef = createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
       //   console.log(userDocRef);

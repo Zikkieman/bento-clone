@@ -84,15 +84,16 @@ margin-right: 15px;
 
 @media (max-width: 1200px) {
     .fifth-div{
-        padding: 5%;
+        padding: 20px 2%;
     }
     .fifth-header{
-        font-size: 2rem;
+        font-size: 1.7rem;
         width: fit-content;
         margin-bottom: 50px;
     }
 
     .fifth-p{
+        font-size: 1.1rem;
         width: fit-content;
     }
 

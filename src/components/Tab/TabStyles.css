@@ -89,6 +89,7 @@
     }
 
     .tab-butt{
-        padding: 10px 35%;
+        width: 100%;
+        padding: 10px 0%;
     }
 }

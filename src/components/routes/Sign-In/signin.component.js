@@ -1,8 +1,9 @@
 import SignUpForm from "../../sign-up-form/sign-up.component";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../../context/user.context";
 import "./signin.style.scss";
 import FormInput from "../../form-input/form-input.component";
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // import {
 //   createAuthUserWithEmailAndPassword,
 //   createUserDocumentFromAuth,
@@ -13,6 +14,7 @@ import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
+  signOutUser,
 } from "../../../utils/firebase/firebase.utils";
 
 import Button from "../../button/button.component";
@@ -42,6 +44,10 @@ const SignIn = () => {
     setFormFields(defaultFormValues);
   };
 
+  const { setCurrentUser } = useContext(UserContext);
+
+  const { currentUser } = useContext(UserContext);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -50,7 +56,9 @@ const SignIn = () => {
         email,
         password
       );
-      resetFormFields()
+      const { user } = response;
+      setCurrentUser(user);
+      resetFormFields();
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -70,8 +78,13 @@ const SignIn = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  function handlePassword () {
-      setShowPassword(!showPassword)
+  function handlePassword() {
+    setShowPassword(!showPassword);
+  }
+
+   const handleSignOutUser = async () => {
+    await signOutUser();
+    setCurrentUser(null)
   }
 
   // function handleWarning() {
@@ -85,10 +98,20 @@ const SignIn = () => {
   return (
     <div className="main-signin-div">
       <div className="signin-nav">
-        <Link to="/"><h4> Bento </h4></Link> 
+        <Link to="/">
+          <h4> Bento </h4>
+        </Link>
         <div className="spacer"></div>
         <span>Don't have an account?</span>
-        <Link to="/sign-up"><button>Sign up</button></Link> 
+        {currentUser ? (
+          
+            <button onClick={handleSignOutUser}>Sign Out</button>
+         
+        ) : (
+          <Link to="/sign-up">
+            <button>Sign up</button>
+          </Link>
+        )}
       </div>
       <div className="signin-div">
         <p>Sign in to your account</p>
@@ -121,16 +144,20 @@ const SignIn = () => {
             value={password}
           />
 
-          {password.length <= 0 ? 
-            <span className="warning">Password is required</span> : <span className="visible-span" onClick ={handlePassword} >
-            < VisibilityOffIcon className="visible"  />
-          </span>
-          }
+          {password.length <= 0 ? (
+            <span className="warning">Password is required</span>
+          ) : (
+            <span className="visible-span" onClick={handlePassword}>
+              <VisibilityOffIcon className="visible" />
+            </span>
+          )}
           <div>
-          <button type="submit" className="first-signin-button">Sign In</button>
-          <button type="button" onClick={googleSignIn}>
-            Google Sign In
-          </button>
+            <button type="submit" className="first-signin-button">
+              Sign In
+            </button>
+            <button type="button" onClick={googleSignIn}>
+              Google Sign In
+            </button>
           </div>
         </form>
       </div>

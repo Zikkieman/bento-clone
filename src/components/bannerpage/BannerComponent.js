@@ -24,7 +24,7 @@ export const Banner = () => {
               employees across Africa, wherever work happens
             </p>
           </div>
-          <div>
+          <div className="banner-button-div">
             <button
               className="first-banner-button">
               {" "}
@@ -37,7 +37,7 @@ export const Banner = () => {
           </div>
           </div>
         </Grid>
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={12} md={6} className="globe-img-div">
           <img
             className="globe-img"
             src={globe}
