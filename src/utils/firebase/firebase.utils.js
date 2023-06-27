@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+
+import { useEffect, useState, useContext } from "react";
 import {
   getAuth,
   signInWithRedirect,
@@ -7,8 +9,17 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCj0oqjgxQG44Q-VXyLNG1E0c1_WQhO4Mo",
@@ -42,20 +53,25 @@ export const createUserDocumentFromAuth = async (
   additionalInfo = {}
 ) => {
   if (!userAuth) return;
+
   const userDocRef = doc(db, "users", userAuth.uid);
   // console.log(userDocRef);
   const userSnapshot = await getDoc(userDocRef);
+  // console.log(userID)
+  // console.log(userSnapshot.data())
   // console.log(userSnapshot);
-  console.log(userSnapshot.exists());
+  // console.log(userSnapshot.exists());
   //   creating userDocRef is just to check if there is a similar doc created already in the database
   // if a similar doc exists then just return otherwise create a new user
 
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
+    const { displayName, email, country, companyName } = userAuth;
     const createdAt = new Date();
     try {
       await setDoc(userDocRef, {
         displayName,
+        country,
+        companyName,
         email,
         createdAt,
         ...additionalInfo,
@@ -64,10 +80,19 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user in the db", error.message);
     }
   } else {
-    // console.log("It is right in the db")
+    // console.log(userDocRef.data())
+
     return userDocRef;
   }
+  // console.log(userDocRef.data())
 };
+
+// export const getCategoriesAndDocuments = async (userId) => {
+//   const collectionRef = collection(db, "users", userId);
+//   const q = query(collectionRef);
+//   const querySnapshot = await getDocs(q);
+//   console.log(querySnapshot);
+// };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
@@ -82,3 +107,9 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
+
+

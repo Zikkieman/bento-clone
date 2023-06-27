@@ -4,6 +4,7 @@ import { UserContext } from "../../../context/user.context";
 import "./signin.style.scss";
 import FormInput from "../../form-input/form-input.component";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import App from "../../../App";
 // import {
 //   createAuthUserWithEmailAndPassword,
 //   createUserDocumentFromAuth,
@@ -18,8 +19,10 @@ import {
 } from "../../../utils/firebase/firebase.utils";
 
 import Button from "../../button/button.component";
-import { Link } from "react-router-dom";
-
+import { Link, Navigate } from "react-router-dom";
+// import Fetch, { getUserInfo } from "../../../utils/firebase/profile.context";
+// import { Fetch } from "../../../utils/firebase/fetch";
+import { ProfileProvider } from "../../../utils/firebase/profile.context";
 const defaultFormValues = {
   email: "",
   password: "",
@@ -30,13 +33,13 @@ const SignIn = () => {
     // response is users-credential i got from google authentication
     // i destructured user {} from users-credential (response)
     const response = await signInWithGooglePopup();
-    const { user } = response;
-    await createUserDocumentFromAuth(user);
+    // const { user } = response;
+    // setCurrentUser(user)
+    // await createUserDocumentFromAuth(user);
   };
 
   const [formFields, setFormFields] = useState(defaultFormValues);
   const { email, password } = formFields;
-  console.log(formFields);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -57,7 +60,7 @@ const SignIn = () => {
         password
       );
       const { user } = response;
-      setCurrentUser(user);
+    //  Navigate("/dashboard")
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -72,6 +75,7 @@ const SignIn = () => {
       }
     }
   };
+  // getUserInfo(currentUser)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -82,10 +86,10 @@ const SignIn = () => {
     setShowPassword(!showPassword);
   }
 
-   const handleSignOutUser = async () => {
+  const handleSignOutUser = async () => {
     await signOutUser();
-    setCurrentUser(null)
-  }
+    setCurrentUser(null);
+  };
 
   // function handleWarning() {
   //   if (email.length === 0) {
@@ -104,9 +108,7 @@ const SignIn = () => {
         <div className="spacer"></div>
         <span>Don't have an account?</span>
         {currentUser ? (
-          
-            <button onClick={handleSignOutUser}>Sign Out</button>
-         
+          <button onClick={handleSignOutUser}>Sign Out </button>
         ) : (
           <Link to="/sign-up">
             <button>Sign up</button>
@@ -161,8 +163,7 @@ const SignIn = () => {
           </div>
         </form>
       </div>
-
-      {/* <SignUpForm /> */}
+     
     </div>
   );
 };

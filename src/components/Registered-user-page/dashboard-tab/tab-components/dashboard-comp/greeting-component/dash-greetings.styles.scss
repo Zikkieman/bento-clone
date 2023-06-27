@@ -1,0 +1,44 @@
+.greetings-main-div{
+    display: flex;
+
+    .greetings-fir-div{
+        display: inline-block;
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+    
+        p {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-left: 5px;
+        }
+    }
+
+    .greetings-sec-div{
+        display: inline-block;
+        margin-left:   auto;
+        border: 1.5px solid rgb(212, 208, 208);
+        border-radius: 5px;
+        height: 40px;
+        margin-top: 10px;
+
+        &:hover{
+            border: 1.5px solid rgb(104, 102, 102);
+        }
+    }
+
+    
+   
+}
+
+.currency-dropdown{
+    background-color: #fff;
+    box-shadow: 0 0 3px;
+    width: 90px;
+    border-radius: 5px;
+    position: absolute;
+    right: 20px;
+}

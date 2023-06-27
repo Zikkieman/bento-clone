@@ -1,0 +1,127 @@
+.user-credentials {
+  margin-left: auto;
+  display: flex;
+  width: 150px;
+  position: static;
+
+  .user-initials {
+    height: 30px;
+    width: 30px;
+    background-color: green;
+    color: #fff;
+    border-radius: 50px;
+    margin-right: 10px;
+
+    span {
+      position: relative;
+      top: 4px;
+      left: 11px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  }
+
+  .user-details {
+    span {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.user-profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 15px;
+
+  &:hover {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(227, 225, 225);
+    border-radius: 5px;
+    transform: translateY(-0.25em);
+    transition-duration: 0.6s;
+    -webkit-transform: translateY(-3px);
+  }
+}
+
+.user-initial {
+  height: 30px;
+  width: 30px;
+  background-color: green;
+  color: #fff;
+  border-radius: 50px;
+  margin-right: 10px;
+  margin-left: 15px;
+
+  span {
+    position: relative;
+    top: 4px;
+    left: 11px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+.expanded-icon {
+  margin-left: auto !important;
+}
+
+.top-drawer-init {
+  .drawer-init {
+    // text-align: center;
+    margin: auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    background-color: green;
+
+    span {
+      color: #ffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0 auto;
+      position: relative;
+      top: 30px;
+      left: 35px;
+    }
+    .drawer-home-div {
+      background-color: rgb(240, 236, 236);
+      border: solid 2px white;
+      border-radius: 5px;
+      width: 33px;
+      height: 33px;
+      text-align: center;
+      position: relative;
+      top: 28px;
+      left: 50px;
+    }
+
+    .drawer-init-icon {
+      margin-top: 2px;
+      color: gray;
+      opacity: 80%;
+    }
+  }
+
+  .drawer-user-credentials {
+    text-align: center;
+    margin: 0 auto;
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 30px;
+      margin-bottom: 0;
+      color: #17191c;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: #5c6370;
+      margin-top: 5px;
+    }
+  }
+}

@@ -21,7 +21,7 @@ const defaultFormValues = {
   confirmPassword: "",
 };
 
-const SignUpForm = (props) => {
+const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [agreement, setAgreement] = useState(false);
   function handlePassword() {
@@ -46,9 +46,8 @@ const SignUpForm = (props) => {
     setFormFields(defaultFormValues);
   };
 
-  const {setCurrentUser} = useContext(UserContext);
+  // const {setCurrentUser} = useContext(UserContext);
   const {currentUser} = useContext(UserContext)
-  console.log(currentUser)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,8 +63,8 @@ const SignUpForm = (props) => {
         password
       );
       const { user } = response;
-      setCurrentUser(user);
-      const userDocRef = createUserDocumentFromAuth(user, { displayName });
+      // setCurrentUser(user);
+      const userDocRef = createUserDocumentFromAuth(user, { displayName, country, companyName  });
       resetFormFields();
       //   console.log(userDocRef);
     } catch (error) {
@@ -128,7 +127,7 @@ const SignUpForm = (props) => {
                 <span className="warning">This field is required</span>
               )}
 
-              <label>Full Name</label>
+              <label>Display Name</label>
               <FormInput
                 className="signup-field"
                 type="text"
