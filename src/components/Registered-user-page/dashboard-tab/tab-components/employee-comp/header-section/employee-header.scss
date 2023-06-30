@@ -1,0 +1,21 @@
+.EH-main-div {
+  display: flex;
+
+  .EH-first-div {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .EH-second-div {
+    border-radius: 7px;
+    padding: 10px 20px;
+    margin-left: auto;
+    background-color: #0047cc;
+    color: #fff;
+    border-style: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}

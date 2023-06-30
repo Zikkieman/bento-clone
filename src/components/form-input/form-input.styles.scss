@@ -52,3 +52,9 @@ $main-color: black;
     }
   }
 }
+
+form input::-webkit-validation-bubble-message, 
+form select::-webkit-validation-bubble-message,
+form textarea::-webkit-validation-bubble-message {
+    display:none;
+} 

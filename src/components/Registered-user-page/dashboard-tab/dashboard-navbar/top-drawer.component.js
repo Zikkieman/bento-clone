@@ -16,23 +16,30 @@ import ClearIcon from "@mui/icons-material/Clear";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { UserContext } from "../../../../context/user.context";
 import PlaceIcon from '@mui/icons-material/Place';
+import { signOutUser } from "../../../../utils/firebase/firebase.utils";
 
 
 function Topdrawer() {
-  // const [topdrawer, setTopDrawer] = useState(false)
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const {userProfile} = useContext(UserContext)
+  const {setCurrentUser} = useContext(UserContext)
 
   function handleTopDrawer() {
     setOpenDrawer(!openDrawer);
   }
+
+  const handleSignOutUser = async () => {
+    await signOutUser;
+    setCurrentUser(null);
+  };
+
   return (
     <div>
       <Drawer
         anchor="top"
         open={openDrawer}
-        PaperProps={{ style: { height: "35%" } }}
+        PaperProps={{ style: { height: "45%" } }}
       >
         <AppBar
           elevation={0}
@@ -63,7 +70,7 @@ function Topdrawer() {
             <p>{userProfile.email}</p>
           </div>
         </div>
-        <ListItemButton sx={{ height: "0px" }}>
+        <ListItemButton sx={{ height: "50px" }}>
           <ListItemIcon sx={{ marginRight: "-25px" }}>
             <HomeWorkIcon sx={{ marginRight: "5px" }} />
           </ListItemIcon>
@@ -76,7 +83,7 @@ function Topdrawer() {
           />
         </ListItemButton>
         <Divider />
-        <ListItemButton sx={{ height: "0px" }}>
+        <ListItemButton sx={{ height: "50px" }}>
           <ListItemIcon sx={{ marginRight: "-25px" }}>
             <PlaceIcon sx={{ marginRight: "5px" }} />
           </ListItemIcon>
@@ -89,10 +96,9 @@ function Topdrawer() {
           />
         </ListItemButton>
         <Divider />
-        <ListItemButton sx={{ height: "0px" }}>
+        <ListItemButton sx={{ height: "50px" }} onClick={handleSignOutUser}>
           <ListItemIcon>
             <ListItemText
-              
               primaryTypographyProps={{
                 fontSize: "1rem",
                 color: "gray",

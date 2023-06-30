@@ -1,34 +1,24 @@
-import SignUpForm from "../../sign-up-form/sign-up.component";
 import { useState, useContext } from "react";
 import { UserContext } from "../../../context/user.context";
 import "./signin.style.scss";
 import FormInput from "../../form-input/form-input.component";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import App from "../../../App";
-// import {
-//   createAuthUserWithEmailAndPassword,
-//   createUserDocumentFromAuth,
-//   signInWithGooglePopup,
-// } from "../../utils/firebase/firebase.utils";
-
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signOutUser,
 } from "../../../utils/firebase/firebase.utils";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
-import Button from "../../button/button.component";
-import { Link, Navigate } from "react-router-dom";
-// import Fetch, { getUserInfo } from "../../../utils/firebase/profile.context";
-// import { Fetch } from "../../../utils/firebase/fetch";
-import { ProfileProvider } from "../../../utils/firebase/profile.context";
 const defaultFormValues = {
   email: "",
   password: "",
 };
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const googleSignIn = async () => {
     // response is users-credential i got from google authentication
     // i destructured user {} from users-credential (response)
@@ -60,7 +50,9 @@ const SignIn = () => {
         password
       );
       const { user } = response;
-    //  Navigate("/dashboard")
+      if (location.state?.from) {
+        navigate(location.state.from);
+      }
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -75,7 +67,6 @@ const SignIn = () => {
       }
     }
   };
-  // getUserInfo(currentUser)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -91,14 +82,6 @@ const SignIn = () => {
     setCurrentUser(null);
   };
 
-  // function handleWarning() {
-  //   if (email.length === 0) {
-  //     setWarning("Okay")
-  //   } else if (email.length !== 0) {
-  //     setWarning("")
-  //   }
-  // }
-
   return (
     <div className="main-signin-div">
       <div className="signin-nav">
@@ -107,13 +90,11 @@ const SignIn = () => {
         </Link>
         <div className="spacer"></div>
         <span>Don't have an account?</span>
-        {currentUser ? (
-          <button onClick={handleSignOutUser}>Sign Out </button>
-        ) : (
-          <Link to="/sign-up">
-            <button>Sign up</button>
-          </Link>
-        )}
+
+        <Link to="/sign-up">
+          {" "}
+          <button>Sign Up </button>
+        </Link>
       </div>
       <div className="signin-div">
         <p>Sign in to your account</p>
@@ -163,7 +144,6 @@ const SignIn = () => {
           </div>
         </form>
       </div>
-     
     </div>
   );
 };

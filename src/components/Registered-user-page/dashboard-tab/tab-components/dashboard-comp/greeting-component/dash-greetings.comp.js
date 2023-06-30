@@ -31,6 +31,21 @@ function DashGreetings() {
     greet = "evening";
   }
 
+  let currency;
+
+const handleCurrency = () => {
+    if(country === "Nigeria"){
+      currency = "NGN"
+    } else if (country === "Rwanda") {
+      currency = "RWF"
+    } else if (country === "Kenya"){
+      currency = "KES"
+    } else if (country === "Ghana"){
+      currency = "GHS"
+    }
+
+    return currency
+  }
   return (
 <div>
     <div className="greetings-main-div">
@@ -41,7 +56,7 @@ function DashGreetings() {
       <div className="greetings-sec-div" onClick={handleDropDown} style={{border: dropDown ? "1.5px solid #0047cc" : null}}>
         <ListItem sx={{padding: "4px 8px"}}>
           <ListItemIcon >
-            <ListItemText primary="NGN" sx={{ color: "#000", padding : "0px 5px" }} />
+            <ListItemText primary={handleCurrency()} sx={{ color: "#000", padding : "0px 5px" }} />
             {dropDown ? (
               <ArrowDropUpIcon sx={{ marginLeft: "2px", marginTop: "2px" }} style={{color: dropDown ? "#0047cc" : "#8f8f8f"}}/>
             ) : (

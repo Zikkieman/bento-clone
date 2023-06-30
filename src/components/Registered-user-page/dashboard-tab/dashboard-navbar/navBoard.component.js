@@ -70,7 +70,7 @@ function DashNav() {
         }}
       >
         <Toolbar sx={{ marginBottom: "-10px" }}>
-          <Typography>Bento</Typography>
+         <Link to="/"><Typography>Bento</Typography></Link> 
 
           {isMatch ? (
             <>

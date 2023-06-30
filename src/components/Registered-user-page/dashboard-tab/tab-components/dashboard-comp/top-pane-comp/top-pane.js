@@ -2,8 +2,30 @@ import { Divider, Grid, useMediaQuery, useTheme } from "@mui/material";
 import peopleIcon from "../../../../dashImg/asset 0.svg";
 import "./top-pane.styles.scss";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../../../../context/user.context";
 
 function TopPane() {
+  const {userProfile} = useContext(UserContext)
+
+  const {country} = userProfile
+
+  let currency;
+
+  const handleCurrency = () => {
+      if(country === "Nigeria"){
+        currency = "NGN"
+      } else if (country === "Rwanda") {
+        currency = "RWF"
+      } else if (country === "Kenya"){
+        currency = "KES"
+      } else if (country === "Ghana"){
+        currency = "GHS"
+      }
+  
+      return currency
+    }
+
   const theme = useTheme();
   const isMedium = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -12,10 +34,10 @@ function TopPane() {
         <div className="subpane-fir-div">
           <div>
             <p>Payroll Size</p>
-            <h2>NGN 0.00</h2>
+            <h2>{handleCurrency()} 0.00</h2>
             <span>
               {" "}
-              <span className="inner-span">&#x2198; NGN 0.00</span> less than
+              <span className="inner-span">&#x2198; {handleCurrency()} 0.00</span> less than
               last payroll
             </span>
           </div>

@@ -1,15 +1,15 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/user.context";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up.styles.scss";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
+  signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import { Button } from "@mui/material";
-
 
 const defaultFormValues = {
   companyName: "",
@@ -22,6 +22,9 @@ const defaultFormValues = {
 };
 
 const SignUpForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [agreement, setAgreement] = useState(false);
   function handlePassword() {
@@ -47,7 +50,7 @@ const SignUpForm = () => {
   };
 
   // const {setCurrentUser} = useContext(UserContext);
-  const {currentUser} = useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,10 +65,25 @@ const SignUpForm = () => {
         email,
         password
       );
+
+      // await signInAuthUserWithEmailAndPassword(
+      //   email,
+      //   password
+      // );
+      // if(location.state?.from){
+      //   navigate(location.state.from)
+      // }
       const { user } = response;
       // setCurrentUser(user);
-      const userDocRef = createUserDocumentFromAuth(user, { displayName, country, companyName  });
+      const userDocRef = createUserDocumentFromAuth(user, {
+        displayName,
+        country,
+        companyName,
+      });
+
+      console.log("good");
       resetFormFields();
+
       //   console.log(userDocRef);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -96,13 +114,18 @@ const SignUpForm = () => {
         </div>
 
         <div className="signup-main-div">
-         <Link to="/accttype"><button className="signup-lesser-than">&#60;</button></Link> 
+          <Link to="/accttype">
+            <button className="signup-lesser-than">&#60;</button>
+          </Link>
           <div>
             <h2>Create a company account</h2>
           </div>
           <div>
             <form onSubmit={handleSubmit}>
               <label>Company Name</label>
+              {companyName.length <= 0 && (
+                <span className="warning">&#42;</span>
+              )}
               <FormInput
                 className="signup-field"
                 type="text"
@@ -111,23 +134,26 @@ const SignUpForm = () => {
                 name="companyName"
                 value={companyName}
               />
-              {companyName.length <= 0 && (
-                <span className="warning">This field is required</span>
-              )}
+
               <label>Country</label>
-              <FormInput
-                className="signup-field"
-                // options={options}
+              {country.length <= 0 && <span className="warning">&#42;</span>}
+              <select
                 required
                 onChange={handleChange}
                 name="country"
                 value={country}
-              />
-              {country.length <= 0 && (
-                <span className="warning">This field is required</span>
-              )}
+              >
+               <option value="" disabled selected hidden className="first-option">Select your country</option>
+                <option value="Rwanda" >Rwanda</option>
+                <option value="Ghana">Ghana</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Kenya">Kenya</option>
+              </select>
 
               <label>Display Name</label>
+              {displayName.length <= 0 && (
+                <span className="warning">&#42;</span>
+              )}
               <FormInput
                 className="signup-field"
                 type="text"
@@ -136,11 +162,9 @@ const SignUpForm = () => {
                 name="displayName"
                 value={displayName}
               />
-              {displayName.length <= 0 && (
-                <span className="warning">This field is required</span>
-              )}
 
               <label>Email Address</label>
+              {email.length <= 0 && <span className="warning">&#42;</span>}
               <FormInput
                 className="signup-field"
                 type="email"
@@ -149,11 +173,9 @@ const SignUpForm = () => {
                 name="email"
                 value={email}
               />
-              {email.length <= 0 && (
-                <span className="warning">This field is required</span>
-              )}
 
               <label>Phone Number</label>
+              {number.length <= 0 && <span className="warning">&#42;</span>}
               <FormInput
                 className="signup-field"
                 type="number"
@@ -162,11 +184,17 @@ const SignUpForm = () => {
                 name="number"
                 value={number}
               />
-              {number.length <= 0 && (
-                <span className="warning">This field is required</span>
-              )}
 
               <label>Password</label>
+              {password.length <= 0 ? (
+                <span className="warning">&#42;</span>
+              ) : (
+                <VisibilityOffIcon
+                  sx={{ margin: "0px" }}
+                  className="visible"
+                  onClick={handlePassword}
+                />
+              )}
               <FormInput
                 className="signup-field"
                 label="Password"
@@ -176,17 +204,17 @@ const SignUpForm = () => {
                 name="password"
                 value={password}
               />
-              {password.length <= 0 ? (
-                <span className="warning">Password is required</span>
+
+              <label className="signup-last-label">Confirm Password</label>
+              {confirmPassword.length <= 0 ? (
+                <span className="warning">&#42;</span>
               ) : (
                 <VisibilityOffIcon
                   sx={{ margin: "0px" }}
-                  className="visible"
+                  className="visible-sec"
                   onClick={handlePassword}
                 />
               )}
-
-              <label className="signup-last-label">Confirm Password</label>
               <FormInput
                 className="signup-field"
                 label="Confirm Password"
@@ -196,15 +224,7 @@ const SignUpForm = () => {
                 name="confirmPassword"
                 value={confirmPassword}
               />
-              {confirmPassword.length <= 0 ? (
-                <span className="warning">Password is required</span>
-              ) : (
-                <VisibilityOffIcon
-                  sx={{ margin: "0px" }}
-                  className="visible"
-                  onClick={handlePassword}
-                />
-              )}
+
               <div className="signup-term-condition">
                 <input
                   type="checkbox"

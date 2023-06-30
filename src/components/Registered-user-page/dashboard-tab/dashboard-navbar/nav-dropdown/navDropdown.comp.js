@@ -1,39 +1,47 @@
-import "./navDropdown.scss"
+import "./navDropdown.scss";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
-import PlaceIcon from '@mui/icons-material/Place';
+import PlaceIcon from "@mui/icons-material/Place";
 import {
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Divider,
-  } from "@mui/material";
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../../../../../context/user.context";
- 
-
+import { signOutUser } from "../../../../../utils/firebase/firebase.utils";
 
 function NavDropdown() {
+  const { userProfile } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
-  const {userProfile} = useContext(UserContext)
+  const { email, country, displayName, companyName } = userProfile;
 
-  const {email, country, displayName, companyName } = userProfile
-    return(
-        <div className="dropdown-mian-div">
-        <div >
-            <div className="top-drawer-init">
+  const handleSignOutUser = async () => {
+    await signOutUser;
+    setCurrentUser(null);
+  };
+
+  return (
+    <div className="dropdown-mian-div">
+      <div>
+        <div className="top-drawer-init">
           <div className="drawer-init">
-            <span>{email.slice(0,1).toUpperCase()}</span>
+            <span>{email.slice(0, 1).toUpperCase()}</span>
             <div className="drawer-home-div">
               <HomeWorkIcon className="drawer-init-icon" />
             </div>
           </div>
-          <div className="drawer-user-credentials" style={{marginTop: "-10px"}}>
+          <div
+            className="drawer-user-credentials"
+            style={{ marginTop: "-10px" }}
+          >
             <h3>{displayName}</h3>
             <p>{email}</p>
           </div>
         </div>
-        </div>
-        <ListItemButton sx={{backgroundColor: "#f8f8f8"}}>
+      </div>
+      <ListItemButton>
         <ListItemIcon sx={{ marginRight: "-25px" }}>
           <HomeWorkIcon sx={{ marginRight: "5px" }} />
         </ListItemIcon>
@@ -45,7 +53,10 @@ function NavDropdown() {
           }}
         />
       </ListItemButton>
-      <ListItemButton sx={{backgroundColor: "#f8f8f8"}}>
+
+      <Divider />
+
+      <ListItemButton>
         <ListItemIcon sx={{ marginRight: "-25px" }}>
           <PlaceIcon sx={{ marginRight: "5px" }} />
         </ListItemIcon>
@@ -61,10 +72,9 @@ function NavDropdown() {
         />
       </ListItemButton>
       <Divider />
-      <ListItemButton >
+      <ListItemButton onClick={handleSignOutUser}>
         <ListItemIcon>
           <ListItemText
-            
             primaryTypographyProps={{
               fontSize: "1rem",
               color: "gray",
@@ -74,8 +84,8 @@ function NavDropdown() {
           </ListItemText>
         </ListItemIcon>
       </ListItemButton>
-      </div>
-    )
+    </div>
+  );
 }
 
 export default NavDropdown;
