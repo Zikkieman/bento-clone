@@ -91,7 +91,7 @@ const SignIn = () => {
         <div className="spacer"></div>
         <span>Don't have an account?</span>
 
-        <Link to="/sign-up">
+        <Link to="/sign-up" style={{textDecoration: "none"}}>
           {" "}
           <button>Sign Up </button>
         </Link>
@@ -101,6 +101,7 @@ const SignIn = () => {
 
         <form onSubmit={handleSubmit}>
           <label>Email</label>
+          {email.length <= 0 && <span className="warning">&#42;</span>}
           <FormInput
             className="signin-input-field"
             label="Email"
@@ -111,12 +112,13 @@ const SignIn = () => {
             value={email}
             // onClick={handleWarning}
           />
-          {email.length <= 0 && (
-            <span className="warning">This field is required</span>
-          )}
 
           <label>Password</label>
-
+          {password.length <= 0 ? (
+            <span className="warning">&#42;</span>
+          ) : (
+            <VisibilityOffIcon className="visible" onClick={handlePassword} sx={{color: "#d4112c"}} />
+          )}
           <FormInput
             className="signin-input-field"
             label="Password"
@@ -127,13 +129,6 @@ const SignIn = () => {
             value={password}
           />
 
-          {password.length <= 0 ? (
-            <span className="warning">Password is required</span>
-          ) : (
-            <span className="visible-span" onClick={handlePassword}>
-              <VisibilityOffIcon className="visible" />
-            </span>
-          )}
           <div>
             <button type="submit" className="first-signin-button">
               Sign In

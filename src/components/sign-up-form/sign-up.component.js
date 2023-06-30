@@ -26,9 +26,14 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreement, setAgreement] = useState(false);
   function handlePassword() {
     setShowPassword(!showPassword);
+  }
+
+  function handleConfirmPassword() {
+    setShowConfirmPassword(!showConfirmPassword);
   }
 
   function handleAgreement(event) {
@@ -212,13 +217,13 @@ const SignUpForm = () => {
                 <VisibilityOffIcon
                   sx={{ margin: "0px" }}
                   className="visible-sec"
-                  onClick={handlePassword}
+                  onClick={handleConfirmPassword}
                 />
               )}
               <FormInput
                 className="signup-field"
                 label="Confirm Password"
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 required
                 onChange={handleChange}
                 name="confirmPassword"

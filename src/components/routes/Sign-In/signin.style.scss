@@ -21,6 +21,13 @@
       }
     }
 
+    @media (max-width: 365px) {
+      .spacer {
+        display: inline-block;
+        width: 6%;
+      }
+    }
+
     @media (min-width: 1020px) and (max-width: 1100px) {
       .spacer {
         display: inline-block;
@@ -76,7 +83,7 @@
       margin-bottom: 20px;
       padding: 7px 14px;
       border-color: #dfe1e5;
-
+      border-radius: 5px;
       border-style: groove;
 
       &:hover {
@@ -90,30 +97,42 @@
         display: inline-block;
       }
     }
-    .warning {
-      display: block;
-      margin-top: -20px;
-      margin-bottom: 20px;
-      font-size: 0.8rem;
-      color: #d4112c;
+
+    @media (max-width: 365px) {
+      .signin-input-field {
+        width: 300px;
+        display: inline-block;
+      }
     }
 
-    .visible-span {
-      margin-top: 0;
+    .warning {
+      margin-left: 5px;
+      font-size: 1.2rem;
+      color: #d4112c;
       position: relative;
-      bottom: 53px;
-      left: 400px;
+      top: 5px;
+    }
+
+   
 
       .visible {
         color: #d4112c;
         margin-top: 0px;
-        margin-bottom: 20px;
+        position: relative;
+        top: 43px;
+        left: 330px;
       }
-    }
+
+      @media (max-width: 500px) {
+        .visible{
+          position: relative;
+        left: 240px;
+        }
+      }
+    
 
     button {
-      display: flexbox;
-      justify-items: space-between;
+      
       padding: 7px 20px;
       border-style: none;
       color: #fff;
