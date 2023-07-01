@@ -10,6 +10,7 @@ import {
   signOutUser,
 } from "../../../utils/firebase/firebase.utils";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const defaultFormValues = {
   email: "",
@@ -17,7 +18,7 @@ const defaultFormValues = {
 };
 
 const SignIn = () => {
-  const navigate = useNavigate();
+  const navigation = useNavigate();
   const location = useLocation();
   const googleSignIn = async () => {
     // response is users-credential i got from google authentication
@@ -44,25 +45,48 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const resolveAfter3Sec = new Promise((resolve) =>
+      setTimeout(resolve, 1000)
+    );
+
     try {
       const response = await signInAuthUserWithEmailAndPassword(
         email,
-        password
+        password,
+        toast.promise(resolveAfter3Sec, {
+          pending: "Please Wait...",
+        },{
+          type: "info"
+        })
       ).then(() => {
-        navigate("/dashboard")
-      })
+        navigation("/dashboard");
+
+        toast("Successfully logged in", {
+          position: "bottom-center",
+          type: "success",
+          theme: "dark",
+        });
+      });
       const { user } = response;
-      if (location.state?.from) {
-        navigate(location.state.from);
-      }
+      // if (location.state?.from) {
+      //   navigation(location.state.from);
+      // }
       resetFormFields();
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
-          alert("Wrong password!");
+          toast("Wrong Password", {
+            position: "top-right",
+            type: "error",
+            theme: "light",
+          });
           break;
         case "auth/user-not-found":
-          alert("Kindly input the correct email");
+          toast("Kindly input correct email", {
+            position: "top-right",
+            type: "error",
+            theme: "light",
+          });
           break;
         default:
           console.log(error);
@@ -79,10 +103,10 @@ const SignIn = () => {
     setShowPassword(!showPassword);
   }
 
-  const handleSignOutUser = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
+  // const handleSignOutUser = async () => {
+  //   await signOutUser();
+  //   setCurrentUser(null);
+  // };
 
   return (
     <div className="main-signin-div">
@@ -93,7 +117,7 @@ const SignIn = () => {
         <div className="spacer"></div>
         <span>Don't have an account?</span>
 
-        <Link to="/sign-up" style={{textDecoration: "none"}}>
+        <Link to="/sign-up" style={{ textDecoration: "none" }}>
           {" "}
           <button>Sign Up </button>
         </Link>
@@ -119,7 +143,11 @@ const SignIn = () => {
           {password.length <= 0 ? (
             <span className="warning">&#42;</span>
           ) : (
-            <VisibilityOffIcon className="visible" onClick={handlePassword} sx={{color: "#d4112c"}} />
+            <VisibilityOffIcon
+              className="visible"
+              onClick={handlePassword}
+              sx={{ color: "#d4112c" }}
+            />
           )}
           <FormInput
             className="signin-input-field"

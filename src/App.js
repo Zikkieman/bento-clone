@@ -12,6 +12,8 @@ import Remittances from "./components/Registered-user-page/dashboard-tab/tab-com
 import Benefit from "./components/Registered-user-page/dashboard-tab/tab-components/benefit-comp/benefit.component";
 import Vault from "./components/Registered-user-page/dashboard-tab/tab-components/vault-comp/vault.component";
 import PrivateRoutes from "./components/privateRoutes/private";
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (

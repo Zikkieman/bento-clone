@@ -4,9 +4,7 @@ import { UserContext } from "../../context/user.context";
 
 function PrivateRoutes() {
   const location = useLocation();
-  const userProfile = localStorage.getItem("userInfo")
   const { currentUser } = useContext(UserContext);
-  console.log(userProfile)
 
   return currentUser ? (
     <Outlet />

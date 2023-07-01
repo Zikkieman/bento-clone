@@ -5,18 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/user.context";
-// import { ProfileProvider } from "./utils/firebase/profile.context";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    {/* <ProfileProvider> */}
     <UserProvider>
         <App />
-      </UserProvider>
-    {/* </ProfileProvider> */}
-      
+        <ToastContainer />
+      </UserProvider>      
     </BrowserRouter>
   </React.StrictMode>
 );

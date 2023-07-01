@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up.styles.scss";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { toast } from "react-toastify";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -85,8 +86,9 @@ const SignUpForm = () => {
         country,
         companyName,
       }).then(() => {
-        navigate("/sign-in")
-      })
+        navigate("/sign-in");
+        toast("You can now sign in");
+      });
 
       console.log("good");
       resetFormFields();
@@ -94,9 +96,9 @@ const SignUpForm = () => {
       //   console.log(userDocRef);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        alert("Cannot create user, email already in use");
+        toast("Cannot create user, email already in use");
       } else {
-        alert("user creation encountered an error", error);
+        toast("user creation encountered an error", error);
       }
     }
   };
@@ -150,8 +152,16 @@ const SignUpForm = () => {
                 name="country"
                 value={country}
               >
-               <option value="" disabled selected hidden className="first-option">Select your country</option>
-                <option value="Rwanda" >Rwanda</option>
+                <option
+                  value=""
+                  disabled
+                  selected
+                  hidden
+                  className="first-option"
+                >
+                  Select your country
+                </option>
+                <option value="Rwanda">Rwanda</option>
                 <option value="Ghana">Ghana</option>
                 <option value="Nigeria">Nigeria</option>
                 <option value="Kenya">Kenya</option>
