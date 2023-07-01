@@ -1,10 +1,11 @@
-import { ClassNames } from "@emotion/react";
 import EmployeeHeader from "./header-section/employee-header";
+import EmployeeBody from "./body-section/employee-body";
 
 function Employee() {
   return (
-    <div style={{margin: "50px 30px"}}>
+    <div >
       <EmployeeHeader />
+      <EmployeeBody />
     </div>
   );
 }

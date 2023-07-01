@@ -1,7 +1,9 @@
+import PayrollHeader from "./payroll-header/payroll-header";
+
 function Payroll (){
     return (
         <div>
-            <h2>this is the payroll</h2>
+            <PayrollHeader />
         </div>
     )
 }

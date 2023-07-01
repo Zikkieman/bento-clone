@@ -1,0 +1,14 @@
+.PH-main-div{
+    margin: 50px 30px;
+
+    .PH-header-div{
+        display: flex;
+
+
+        .PH-current-month{
+            display: flex;
+            border: 1px solid #8f8f8f;
+            width: 300px;
+        }
+    }
+}

@@ -18,7 +18,7 @@ export const Banner = () => {
               </p>
             </div>
             <div className="banner-button-div">
-              <Link to="dashboard">
+              <Link to="/accttype">
                 {" "}
                 <button className="first-banner-button"> Get Started </button>
               </Link>

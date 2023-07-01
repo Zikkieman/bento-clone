@@ -80,11 +80,13 @@ const SignUpForm = () => {
       // }
       const { user } = response;
       // setCurrentUser(user);
-      const userDocRef = createUserDocumentFromAuth(user, {
+      const userDocRef = await createUserDocumentFromAuth(user, {
         displayName,
         country,
         companyName,
-      });
+      }).then(() => {
+        navigate("/sign-in")
+      })
 
       console.log("good");
       resetFormFields();

@@ -1,5 +1,6 @@
 .EH-main-div {
   display: flex;
+  margin: 50px 30px;
 
   .EH-first-div {
     margin-top: 10px;
@@ -17,5 +18,11 @@
     border-style: none;
     font-weight: 600;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .EH-main-div{
+    margin: 50px 10px;
   }
 }

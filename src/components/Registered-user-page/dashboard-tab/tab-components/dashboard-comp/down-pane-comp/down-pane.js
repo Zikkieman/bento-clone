@@ -23,7 +23,6 @@ function DownPane() {
 
   const rightHandleDropDown = () => {
     setRightDropDown(!rightDropDown);
-    console.log("opened");
   };
   return (
     <div className="downpane-div">

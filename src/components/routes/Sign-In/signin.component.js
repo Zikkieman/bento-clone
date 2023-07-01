@@ -48,7 +48,9 @@ const SignIn = () => {
       const response = await signInAuthUserWithEmailAndPassword(
         email,
         password
-      );
+      ).then(() => {
+        navigate("/dashboard")
+      })
       const { user } = response;
       if (location.state?.from) {
         navigate(location.state.from);
