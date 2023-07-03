@@ -1,14 +1,59 @@
-.PH-main-div{
-    margin: 50px 30px;
+.PH-main-div {
+  margin: 60px 30px;
 
-    .PH-header-div{
-        display: flex;
+  .PH-header-div {
+    display: flex;
 
-
-        .PH-current-month{
-            display: flex;
-            border: 1px solid #8f8f8f;
-            width: 300px;
-        }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-top: 0px;
     }
+
+    .PH-current-month {
+      display: flex;
+      border: 1px solid #8f8f8f;
+      height: 40px;
+      border-radius: 7px;
+      margin-right: 10px;
+      margin-left: auto;
+      // width: 300px;
+      p {
+        margin: 10px 0 10px 10px;
+        color: #8f8f8f;
+      }
+      span {
+        margin: 10px;
+      }
+
+      @media (max-width: 500px) {
+        width: fit-content; 
+        margin-left: 0;
+        margin-bottom: 30px;
+      }
+    }
+
+   
+
+    .PH-summary {
+      background-color: #1d871d;
+      color: #fff;
+      height: 30px;
+      width: 170px;
+      padding: 10px 0 0 20px;
+      border-radius: 7px;
+      font-weight: 500;
+
+      &:hover {
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+        background-color: #53d653;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    .PH-header-div {
+      display: block;
+    }
+  }
 }

@@ -74,15 +74,16 @@ function EmployeeBody() {
             <Tab label="Inactive Employees" sx={{fontSize: "0.75rem"}}/>
           </Tabs>
         </Box>
-        <div onClick={handleChangeColor}>
+        <div >
           <input
+          onClick={handleChangeColor}
             type="text"
             placeholder="Search..."
             style={{
               border: searchColor ? "1px solid #0047cc" : "1px solid #8f8f8f",
             }}
           />
-          <SearchIcon className="BH-search-icon" />
+          <SearchIcon className="BH-search-icon" style={{color : searchColor ?  "#8f8f8f" :  "#0047cc"}}/>
         </div>
 
         <TabPanel value={value} index={0}>

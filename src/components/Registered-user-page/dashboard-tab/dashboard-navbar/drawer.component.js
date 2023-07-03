@@ -21,6 +21,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MenuIcon from "@mui/icons-material/Menu";
 import ClearIcon from "@mui/icons-material/Clear";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { Link } from "react-router-dom";
 
 function DrawerComponent() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -64,11 +65,19 @@ function DrawerComponent() {
                   color: "#0047cc",
                 }}
               >
-                Dashboard
+                <Link
+                  to="/dashboard"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  onClick={() => {
+                    setOpenDrawer(!openDrawer);
+                  }}
+                >
+                  Dashboard
+                </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
-
+          <Divider />
           <Accordion elevation={0}>
             <AccordionSummary
               expandIcon={<ArrowDropDownIcon className="expanded-icon" />}
@@ -83,7 +92,15 @@ function DrawerComponent() {
                   fontWeight: "600",
                 }}
               >
-                Employees
+                <Link
+                  to="/employee"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  onClick={() => {
+                    setOpenDrawer(!openDrawer);
+                  }}
+                >
+                  Employees
+                </Link>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -144,7 +161,15 @@ function DrawerComponent() {
                   fontWeight: "600",
                 }}
               >
-                Payroll
+                <Link
+                  to="/payroll"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  onClick={() => {
+                    setOpenDrawer(!openDrawer);
+                  }}
+                >
+                  Payroll
+                </Link>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -189,7 +214,15 @@ function DrawerComponent() {
                   fontWeight: "600",
                 }}
               >
-                Remittances
+                <Link
+                  to="/remittances"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  onClick={() => {
+                    setOpenDrawer(!openDrawer);
+                  }}
+                >
+                  Remittances
+                </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
@@ -202,8 +235,15 @@ function DrawerComponent() {
                   fontWeight: "600",
                 }}
               >
-               
-                Benefits
+                <Link
+                  to="/benefit"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  onClick={() => {
+                    setOpenDrawer(!openDrawer);
+                  }}
+                >
+                  Benefit
+                </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
@@ -216,8 +256,15 @@ function DrawerComponent() {
                   fontWeight: "600",
                 }}
               >
-               
-                Vault
+                <Link
+                  to="/vault"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  onClick={() => {
+                    setOpenDrawer(!openDrawer);
+                  }}
+                >
+                  Vault
+                </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>

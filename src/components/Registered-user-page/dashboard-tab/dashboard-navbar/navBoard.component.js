@@ -78,7 +78,7 @@ function DashNav() {
         }}
       >
         <Toolbar sx={{ marginBottom: "-10px" }}>
-          <Link to="/">
+          <Link to="/" style={{textDecoration: "none", color: "black"}}>
             <Typography>Bento</Typography>
           </Link>
 

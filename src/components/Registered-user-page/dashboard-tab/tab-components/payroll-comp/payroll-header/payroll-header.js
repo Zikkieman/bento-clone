@@ -2,42 +2,43 @@ import "./payroll-header.scss";
 import { useState } from "react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import {
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    ListItemButton,
-  } from "@mui/material";
 
+import BasicTabs from "../payroll-body/payroll-tab";
+import getMonth from "./currentMonth";
 
 function PayrollHeader() {
-    const [rightDropDown, setRightDropDown] = useState(false);
-    const rightHandleDropDown = () => {
-        setRightDropDown(!rightDropDown);
-      };
+  const [changeColor, setChangeColor] = useState(false);
+  const HandleChangeColor = () => {
+    setChangeColor(!changeColor);
+  };
+
+
 
   return (
     <div className="PH-main-div">
       <div className="PH-header-div">
         <h2>Payroll Schedule</h2>
-        <div className="PH-current-month">
-          <span>Payroll month: </span>
-          <ListItem sx={{ padding: "" }}>
-            <ListItemText primary="June" />
-            <ListItemIcon onClick={rightHandleDropDown}>
-              {rightDropDown ? (
-                <ArrowDropUpIcon
-                
-                  style={{ color: rightHandleDropDown && "#0047cc" }}
-                />
-              ) : (
-                <ArrowDropDownIcon sx={{ marginLeft: "20px" }} />
-              )}
-            </ListItemIcon>
-          </ListItem>
+        <div
+          className="PH-current-month"
+          onClick={HandleChangeColor}
+          style={{ border: changeColor && "1px solid #0047cc" }}
+        >
+          <p>Payroll month: </p>
+          <span>{getMonth()}</span>
+          {changeColor ? (
+            <ArrowDropUpIcon
+              style={{
+                color: changeColor && "#0047cc",
+                margin: "10px 15px 15px 0",
+              }}
+            />
+          ) : (
+            <ArrowDropDownIcon style={{ margin: "10px 15px 15px 0" }} />
+          )}
         </div>
-        <div>Proceed to Summary</div>
+        <div className="PH-summary">Proceed to Summary</div>
       </div>
+      <BasicTabs />
     </div>
   );
 }

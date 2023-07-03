@@ -77,10 +77,12 @@
   @media (max-width: 500px) {
     .signup-field {
       width: 350px;
+      // margin: 0 20px;
     }
 
     select {
       width: 360px;
+      // margin: 0 20px;
     }
   }
 
@@ -148,13 +150,13 @@
 
   @media (min-width: 365px) and (max-width: 500px) {
     .signup-button {
-      padding: 5px 150px;
+      padding: 5px 145px;
     }
   }
 
   @media (max-width: 364px) {
     .signup-button {
-      padding: 5px 140px;
+      padding: 5px 130px;
     }
   }
 }
@@ -172,16 +174,13 @@
 
 @media (min-width: 365px) and (max-width: 499px) {
   .signup-main-div {
-    padding: 20px 1%;
+    padding: 20px 2%;
   }
 }
 
 @media (max-width: 364px) {
   .signup-main-div {
-    padding: 20px 0%;
+    padding: 20px 3%;
   }
 }
 
-form input::-webkit-validation-bubble-message {
-  display: none;
-}

@@ -1,0 +1,42 @@
+.PB-main-div {
+  margin: 20px 10px;
+
+  .PB-tab{
+    font-weight: 600 !important;
+    text-transform: capitalize;
+  }
+
+  .PB-tabpanel {
+    text-align: center;
+    img {
+      width: 110px;
+      margin-top: 140px;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: -30px;
+    }
+  }
+
+  .PB-below-panel {
+    text-align: center;
+
+    p {
+      color: #8f8f8f;
+      font-size: 1rem;
+    }
+
+    .PB-div {
+      display: inline-block;
+      border-radius: 7px;
+      padding: 10px 20px;
+      background-color: #0047cc;
+      color: #fff;
+      border-style: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+}
