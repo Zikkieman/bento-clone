@@ -13,7 +13,7 @@ export const basicSchema = yup.object().shape({
     .min(5)
     .matches(passwordRules, {
       message:
-        "Password must contain 1 upper case letter, 1 lower case letter, 1 numeric digit.",
+        "Password must contain 1 upper case letter, 1 lower case letter, 1 numeric digit, 1 special character.",
     })
     .required("Required"),
   confirmPassword: yup
