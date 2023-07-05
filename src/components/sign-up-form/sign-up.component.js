@@ -11,6 +11,7 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import { Button } from "@mui/material";
+import CountrySelector from "./country-list.component";
 
 const defaultFormValues = {
   companyName: "",
@@ -55,9 +56,6 @@ const SignUpForm = () => {
     setFormFields(defaultFormValues);
   };
 
-  // const {setCurrentUser} = useContext(UserContext);
-  const { currentUser } = useContext(UserContext);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -72,15 +70,7 @@ const SignUpForm = () => {
         password
       );
 
-      // await signInAuthUserWithEmailAndPassword(
-      //   email,
-      //   password
-      // );
-      // if(location.state?.from){
-      //   navigate(location.state.from)
-      // }
       const { user } = response;
-      // setCurrentUser(user);
       const userDocRef = await createUserDocumentFromAuth(user, {
         displayName,
         country,
@@ -92,8 +82,6 @@ const SignUpForm = () => {
 
       console.log("good");
       resetFormFields();
-
-      //   console.log(userDocRef);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast("Cannot create user, email already in use");
@@ -166,6 +154,7 @@ const SignUpForm = () => {
                 <option value="Nigeria">Nigeria</option>
                 <option value="Kenya">Kenya</option>
               </select>
+              <CountrySelector country={country} />
 
               <label>Display Name</label>
               {displayName.length <= 0 && (
@@ -194,11 +183,11 @@ const SignUpForm = () => {
               <label>Phone Number</label>
               {number.length <= 0 && <span className="warning">&#42;</span>}
               <FormInput
-                className="signup-field"
+                className="signup-field number"
                 type="number"
                 required
                 onChange={handleChange}
-                name="number"
+                name="tel"
                 value={number}
               />
 

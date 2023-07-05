@@ -12,7 +12,7 @@
 
     .PH-current-month {
       display: flex;
-      border: 1px solid #8f8f8f;
+      border: 1.5px solid #8f8f8f;
       height: 40px;
       border-radius: 7px;
       margin-right: 10px;
@@ -45,8 +45,9 @@
       font-weight: 500;
 
       &:hover {
-        -webkit-transform: translateY(-1px);
-        transform: translateY(-1px);
+        transform: translateY(-0.25em);
+        transition-duration: 0.6s;
+        -webkit-transform: translateY(-3px);
         background-color: #53d653;
       }
     }
@@ -55,5 +56,38 @@
     .PH-header-div {
       display: block;
     }
+  }
+}
+
+
+.current-month-div{
+  position: relative;
+  bottom: 460px;
+  left: 1220px;
+  background-color: #fff;
+  z-index: 8;
+}
+
+@media (max-width: 500px) {
+  .current-month-div{
+    position: relative;
+    bottom: 580px;
+    left: 1px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1100px) {
+  .current-month-div{
+    position: relative;
+    bottom: 460px;
+    left: 562px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .current-month-div{
+    position: relative;
+    bottom: 460px;
+    left: 225px;
   }
 }

@@ -4,7 +4,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 import BasicTabs from "../payroll-body/payroll-tab";
-import getMonth from "./currentMonth";
+import getMonth, { SelectedListItem } from "./currentMonth";
 
 function PayrollHeader() {
   const [changeColor, setChangeColor] = useState(false);
@@ -21,7 +21,7 @@ function PayrollHeader() {
         <div
           className="PH-current-month"
           onClick={HandleChangeColor}
-          style={{ border: changeColor && "1px solid #0047cc" }}
+          style={{ border: changeColor && "1.5px solid #0047cc" }}
         >
           <p>Payroll month: </p>
           <span>{getMonth()}</span>
@@ -39,6 +39,9 @@ function PayrollHeader() {
         <div className="PH-summary">Proceed to Summary</div>
       </div>
       <BasicTabs />
+      {
+        changeColor && <SelectedListItem />
+      }
     </div>
   );
 }
