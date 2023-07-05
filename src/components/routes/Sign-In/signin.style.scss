@@ -63,6 +63,13 @@
       font-weight: 600;
     }
 
+    .error {
+      color: #fc8181;
+      font-size: 0.8rem;
+      text-align: left;
+      margin-top: -20px;
+    }
+
     label {
       font-size: 0.8rem;
       color: #3c4049;
@@ -162,3 +169,5 @@
     padding: 10px 3%;
   }
 }
+
+

@@ -11,11 +11,9 @@ import {
 } from "../../../utils/firebase/firebase.utils";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import { signInSchema } from "../../../Yup-schema";
 
-const defaultFormValues = {
-  email: "",
-  password: "",
-};
 
 const SignIn = () => {
   const navigation = useNavigate();
@@ -29,22 +27,7 @@ const SignIn = () => {
     // await createUserDocumentFromAuth(user);
   };
 
-  const [formFields, setFormFields] = useState(defaultFormValues);
-  const { email, password } = formFields;
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const resetFormFields = () => {
-    setFormFields(defaultFormValues);
-  };
-
-  const { setCurrentUser } = useContext(UserContext);
-
-  const { currentUser } = useContext(UserContext);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async ({ email, password }, actions) => {
     const resolveAfter3Sec = new Promise((resolve) =>
       setTimeout(resolve, 1000)
     );
@@ -53,11 +36,15 @@ const SignIn = () => {
       const response = await signInAuthUserWithEmailAndPassword(
         email,
         password,
-        toast.promise(resolveAfter3Sec, {
-          pending: "Please Wait...",
-        },{
-          type: "info"
-        })
+        toast.promise(
+          resolveAfter3Sec,
+          {
+            pending: "Please Wait...",
+          },
+          {
+            type: "info",
+          }
+        )
       ).then(() => {
         navigation("/dashboard");
 
@@ -68,10 +55,6 @@ const SignIn = () => {
         });
       });
       const { user } = response;
-      // if (location.state?.from) {
-      //   navigation(location.state.from);
-      // }
-      resetFormFields();
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -92,21 +75,29 @@ const SignIn = () => {
           console.log(error);
       }
     }
+
+    actions.resetForm();
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+  const { handleBlur, handleChange, handleSubmit, touched, values, errors } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: signInSchema,
+      onSubmit,
+    });
+
+  const { email, password } = values;
+
+  console.log(errors);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   function handlePassword() {
     setShowPassword(!showPassword);
   }
-
-  // const handleSignOutUser = async () => {
-  //   await signOutUser();
-  //   setCurrentUser(null);
-  // };
 
   return (
     <div className="main-signin-div">
@@ -125,24 +116,27 @@ const SignIn = () => {
       <div className="signin-div">
         <p>Sign in to your account</p>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <label>Email</label>
-          {email.length <= 0 && <span className="warning">&#42;</span>}
           <FormInput
             className="signin-input-field"
+            style={{
+              border: errors.email && touched.email && "1px solid #d4112c",
+            }}
             label="Email"
             type="email"
             required
             onChange={handleChange}
+            onBlur={handleBlur}
             name="email"
             value={email}
-            // onClick={handleWarning}
           />
+          {errors.email && touched.email && (
+            <p className="error">{errors.email}</p>
+          )}
 
           <label>Password</label>
-          {password.length <= 0 ? (
-            <span className="warning">&#42;</span>
-          ) : (
+          {password.length > 0 && (
             <VisibilityOffIcon
               className="visible"
               onClick={handlePassword}
@@ -151,14 +145,20 @@ const SignIn = () => {
           )}
           <FormInput
             className="signin-input-field"
+            style={{
+              border: errors.email && email.touched && "1px solid #d4112c",
+            }}
             label="Password"
             type={showPassword ? "text" : "password"}
             required
             onChange={handleChange}
+            onBlur={handleBlur}
             name="password"
             value={password}
           />
-
+          {errors.password && touched.password && (
+            <p className="error">{errors.password}</p>
+          )}
           <div>
             <button type="submit" className="first-signin-button">
               Sign In

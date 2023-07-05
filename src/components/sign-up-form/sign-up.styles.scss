@@ -62,6 +62,7 @@
     margin: 5px 0 10px 0;
     width: 450px;
     height: 30px;
+  
   }
 
   select {
@@ -184,14 +185,25 @@
   }
 }
 
-
-
-.dial-code{
-  position: relative;
-  top: 200px;
-  font-size: 0.8rem;
-  left: 4px;
+.error {
+  color: #fc8181;
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: -7px;
 }
+
+// input.input-error{
+//   border: 1px solid #d4112c !important;
+// }
+
+
+
+// .dial-code{
+//   position: relative;
+//   top: 200px;
+//   font-size: 0.8rem;
+//   left: 4px;
+// }
 
 // .number{
 //   font-size: 0.8rem;

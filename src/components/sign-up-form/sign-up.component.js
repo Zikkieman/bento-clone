@@ -12,16 +12,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { Button } from "@mui/material";
 import CountrySelector from "./country-list.component";
-
-const defaultFormValues = {
-  companyName: "",
-  displayName: "",
-  country: "",
-  number: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
+import { useFormik } from "formik";
+import { basicSchema } from "../../Yup-schema";
 
 const SignUpForm = () => {
   const location = useLocation();
@@ -41,24 +33,20 @@ const SignUpForm = () => {
   function handleAgreement(event) {
     setAgreement(event.target.checked);
   }
-  const [formFields, setFormFields] = useState(defaultFormValues);
-  const {
-    companyName,
-    country,
-    number,
-    displayName,
-    email,
-    password,
-    confirmPassword,
-  } = formFields;
 
-  const resetFormFields = () => {
-    setFormFields(defaultFormValues);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  // Usage of formik started here
+  const onSubmit = async (
+    {
+      companyName,
+      country,
+      number,
+      displayName,
+      email,
+      password,
+      confirmPassword,
+    },
+    actions
+  ) => {
     if (password == !confirmPassword) {
       alert("passwords do not match");
       return;
@@ -79,9 +67,6 @@ const SignUpForm = () => {
         navigate("/sign-in");
         toast("You can now sign in");
       });
-
-      console.log("good");
-      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast("Cannot create user, email already in use");
@@ -89,13 +74,43 @@ const SignUpForm = () => {
         toast("user creation encountered an error", error);
       }
     }
+
+    console.log("Submitted");
+    actions.resetForm();
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const {
+    values,
+    handleBlur,
+    touched,
+    handleChange,
+    handleSubmit,
+    errors,
+  } = useFormik({
+    initialValues: {
+      companyName: "",
+      displayName: "",
+      country: "",
+      number: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: basicSchema,
+    onSubmit,
+  });
 
-    setFormFields({ ...formFields, [name]: value });
-  };
+  console.log(errors);
+
+  const {
+    companyName,
+    country,
+    number,
+    displayName,
+    email,
+    password,
+    confirmPassword,
+  } = values;
 
   return (
     <div>
@@ -118,26 +133,38 @@ const SignUpForm = () => {
             <h2>Create a company account</h2>
           </div>
           <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete="off">
               <label>Company Name</label>
-              {companyName.length <= 0 && (
-                <span className="warning">&#42;</span>
-              )}
+
               <FormInput
+                id="companyName"
+                style={{
+                  border:
+                    errors.companyName &&
+                    touched.companyName &&
+                    "1px solid #d4112c",
+                }}
                 className="signup-field"
                 type="text"
                 required
                 onChange={handleChange}
-                name="companyName"
+                onBlur={handleBlur}
                 value={companyName}
               />
+              {errors.companyName && touched.companyName && (
+                <p className="error">{errors.companyName}</p>
+              )}
 
               <label>Country</label>
-              {country.length <= 0 && <span className="warning">&#42;</span>}
               <select
                 required
+                style={{
+                  border:
+                    errors.country && touched.country && "1px solid #d4112c",
+                }}
                 onChange={handleChange}
-                name="country"
+                onBlur={handleBlur}
+                id="country"
                 value={country}
               >
                 <option
@@ -154,47 +181,69 @@ const SignUpForm = () => {
                 <option value="Nigeria">Nigeria</option>
                 <option value="Kenya">Kenya</option>
               </select>
-              <CountrySelector country={country} />
+              {errors.country && touched.country && (
+                <p className="error">{errors.country}</p>
+              )}
 
               <label>Display Name</label>
-              {displayName.length <= 0 && (
-                <span className="warning">&#42;</span>
-              )}
+
               <FormInput
                 className="signup-field"
                 type="text"
+                style={{
+                  border:
+                    errors.displayName &&
+                    touched.displayName &&
+                    "1px solid #d4112c",
+                }}
                 required
                 onChange={handleChange}
-                name="displayName"
+                onBlur={handleBlur}
+                id="displayName"
                 value={displayName}
               />
+              {errors.displayName && touched.displayName && (
+                <p className="error">{errors.displayName}</p>
+              )}
 
               <label>Email Address</label>
-              {email.length <= 0 && <span className="warning">&#42;</span>}
               <FormInput
                 className="signup-field"
                 type="email"
+                style={{
+                  border: errors.email && touched.email && "1px solid #d4112c",
+                }}
                 required
                 onChange={handleChange}
-                name="email"
+                onBlur={handleBlur}
+                id="email"
                 value={email}
               />
 
+              {errors.email && touched.email && (
+                <p className="error">{errors.email}</p>
+              )}
+
               <label>Phone Number</label>
-              {number.length <= 0 && <span className="warning">&#42;</span>}
               <FormInput
                 className="signup-field number"
                 type="number"
+                style={{
+                  border:
+                    errors.number && touched.number && "1px solid #d4112c",
+                }}
                 required
                 onChange={handleChange}
-                name="tel"
+                onBlur={handleBlur}
+                id="number"
                 value={number}
               />
+              {errors.number && touched.number && (
+                <p className="error">{errors.number}</p>
+              )}
 
               <label>Password</label>
-              {password.length <= 0 ? (
-                <span className="warning">&#42;</span>
-              ) : (
+              {password.length > 0 && (
                 <VisibilityOffIcon
                   sx={{ margin: "0px" }}
                   className="visible"
@@ -202,19 +251,24 @@ const SignUpForm = () => {
                 />
               )}
               <FormInput
-                className="signup-field"
+                className={`errors.companyName && "input-error"  signup-field`}
                 label="Password"
+                style={{
+                  border:
+                    errors.password && touched.password && "1px solid #d4112c",
+                }}
                 type={showPassword ? "text" : "password"}
                 required
                 onChange={handleChange}
-                name="password"
+                onBlur={handleBlur}
+                id="password"
                 value={password}
               />
-
+              {errors.password && touched.password && (
+                <p className="error">{errors.password}</p>
+              )}
               <label className="signup-last-label">Confirm Password</label>
-              {confirmPassword.length <= 0 ? (
-                <span className="warning">&#42;</span>
-              ) : (
+              {confirmPassword.length > 0 && (
                 <VisibilityOffIcon
                   sx={{ margin: "0px" }}
                   className="visible-sec"
@@ -224,12 +278,22 @@ const SignUpForm = () => {
               <FormInput
                 className="signup-field"
                 label="Confirm Password"
+                style={{
+                  border:
+                    errors.confirmPassword &&
+                    touched.confirmPassword &&
+                    "1px solid #d4112c",
+                }}
                 type={showConfirmPassword ? "text" : "password"}
                 required
                 onChange={handleChange}
-                name="confirmPassword"
+                onBlur={handleBlur}
+                id="confirmPassword"
                 value={confirmPassword}
               />
+              {errors.confirmPassword && touched.confirmPassword && (
+                <p className="error">{errors.confirmPassword}</p>
+              )}
 
               <div className="signup-term-condition">
                 <input
@@ -246,6 +310,7 @@ const SignUpForm = () => {
                 className="signup-button"
                 type="submit"
                 disabled={!agreement}
+                // disabled={isSubmitting}
               >
                 Sign Up
               </Button>
