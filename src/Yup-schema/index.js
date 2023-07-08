@@ -7,7 +7,7 @@ export const basicSchema = yup.object().shape({
   email: yup.string().email("Please enter a valid email").required("Required"),
   displayName: yup.string().required("Required"),
   country: yup.string().required("Required"),
-  number: yup.number().positive().integer().required("Required"),
+  number: yup.number().max(11).positive().integer().required("Required"),
   password: yup
     .string()
     .min(5)
@@ -29,10 +29,3 @@ export const signInSchema = yup.object().shape({
     .required("Required"),
 });
 
-// companyName: "",
-//       displayName: "",
-//       country: "",
-//       number: "",
-//       email: "",
-//       password: "",
-//       confirmPassword: "",

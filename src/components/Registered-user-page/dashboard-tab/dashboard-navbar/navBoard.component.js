@@ -151,7 +151,7 @@ function DashNav() {
                     opacity: "70%",
                   }}
                 />
-                <LinkTab
+                {/* <LinkTab
                   className="tab"
                   label="Benefit"
                   pathname="/benefit"
@@ -170,7 +170,7 @@ function DashNav() {
                     fontWeight: "600",
                     opacity: "70%",
                   }}
-                />
+                /> */}
               </Tabs>
               <div className="user-credentials">
                 <div className="user-initials">
