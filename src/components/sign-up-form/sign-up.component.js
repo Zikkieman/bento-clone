@@ -100,7 +100,7 @@ const SignUpForm = () => {
     onSubmit,
   });
 
-  console.log(errors);
+  // console.log(errors);
 
   const {
     companyName,

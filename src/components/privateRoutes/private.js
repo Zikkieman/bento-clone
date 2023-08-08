@@ -6,11 +6,17 @@ function PrivateRoutes() {
   const location = useLocation();
   const { currentUser } = useContext(UserContext);
 
-  return currentUser ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/sign-in" replace state={{ from: location }} />
-  );
+  if (currentUser === typeof undefined) {
+    return <Navigate to="/sign-in" replace state={{ from: location }} />;
+  } else {
+    return <Outlet />;
+  }
+
+  // return currentUser ? (
+  //   <Outlet />
+  // ) : (
+  //   <Navigate to="/sign-in" replace state={{ from: location }} />
+  // );
 }
 
 export default PrivateRoutes;

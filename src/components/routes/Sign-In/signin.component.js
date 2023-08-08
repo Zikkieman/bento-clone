@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { signInSchema } from "../../../Yup-schema";
 
-
 const SignIn = () => {
   const navigation = useNavigate();
   const location = useLocation();
@@ -54,7 +53,6 @@ const SignIn = () => {
           theme: "dark",
         });
       });
-      const { user } = response;
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -91,7 +89,7 @@ const SignIn = () => {
 
   const { email, password } = values;
 
-  console.log(errors);
+  // console.log(errors);
 
   const [showPassword, setShowPassword] = useState(false);
 

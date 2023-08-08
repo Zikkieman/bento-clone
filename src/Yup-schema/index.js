@@ -7,18 +7,19 @@ export const basicSchema = yup.object().shape({
   email: yup.string().email("Please enter a valid email").required("Required"),
   displayName: yup.string().required("Required"),
   country: yup.string().required("Required"),
-  number: yup.number().max(11).positive().integer().required("Required"),
+  number: yup.number().positive().integer().required("Required"),
   password: yup
     .string()
-    .min(5)
-    .matches(passwordRules, {
-      message:
-        "Password must contain 1 upper case letter, 1 lower case letter, 1 numeric digit, 1 special character.",
-    })
+    // .min(5)
+    // .matches(passwordRules, {
+    //   message:
+    //     "Password must contain 1 upper case letter, 1 lower case letter, 1 numeric digit, 1 special character.",
+    // }
+    // )
     .required("Required"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Password must match")
+    // .oneOf([yup.ref("password"), null], "Password must match")
     .required("Required"),
 });
 
