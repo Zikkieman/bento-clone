@@ -40,20 +40,16 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(getUserDetails);
   const [userProfile, setUserProfile] = useState(getInitialState);
 
-  useEffect(()=> {
-    const getUserInfo = async () => {
-      const docRef = doc(db, "users", currentUser.uid);
+  const getUserInfo = async (uid) => {
+      const docRef = doc(db, "users", uid);
       const profile = await getDoc(docRef);
-      const UserData =  profile.data();
+      const UserData = profile.data();
       localStorage.setItem("userDetails", JSON.stringify(currentUser));
       localStorage.setItem("userInfo", JSON.stringify(UserData));
        setUserProfile(UserData);
-       console.log(UserData);
     };
-    getUserInfo()
-  }, [currentUser])
 
-  const value = { currentUser, setCurrentUser, userProfile };
+  const value = { currentUser, setCurrentUser, userProfile, getUserInfo };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {

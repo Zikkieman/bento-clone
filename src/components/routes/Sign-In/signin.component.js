@@ -15,6 +15,8 @@ import { useFormik } from "formik";
 import { signInSchema } from "../../../Yup-schema";
 
 const SignIn = () => {
+  const userContext = useContext(UserContext)
+  const {getUserInfo} = userContext
   const navigation = useNavigate();
   const location = useLocation();
   const googleSignIn = async () => {
@@ -44,9 +46,10 @@ const SignIn = () => {
             type: "info",
           }
         )
-      ).then(() => {
+      ).then( async(res) => {
+       await getUserInfo(res.user.uid)
+        console.log( "Successful");
         navigation("/dashboard");
-
         toast("Successfully logged in", {
           position: "bottom-center",
           type: "success",
