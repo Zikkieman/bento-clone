@@ -15,7 +15,7 @@ function NavDropdown() {
   const { userProfile } = useContext(UserContext);
   const { setCurrentUser } = useContext(UserContext);
 
-  const { email, country, displayName, companyName } = userProfile;
+  const { email, country, displayName, company } = userProfile;
 
   const handleSignOutUser = async () => {
     await signOutUser;
@@ -46,7 +46,7 @@ function NavDropdown() {
           <HomeWorkIcon sx={{ marginRight: "5px" }} />
         </ListItemIcon>
         <ListItemText
-          primary={companyName}
+          primary={company}
           primaryTypographyProps={{
             fontSize: "0.8rem",
             color: "gray",

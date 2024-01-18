@@ -3,59 +3,48 @@ import { UserContext } from "../../../context/user.context";
 import "./signin.style.scss";
 import FormInput from "../../form-input/form-input.component";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import {
-  signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword,
-  signOutUser,
-} from "../../../utils/firebase/firebase.utils";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { signInSchema } from "../../../Yup-schema";
+import ButtonLoader from "../../loader/spinner";
 
 const SignIn = () => {
-  const userContext = useContext(UserContext)
-  const {getUserInfo} = userContext
-  const navigation = useNavigate();
-  const location = useLocation();
-  const googleSignIn = async () => {
-    // response is users-credential i got from google authentication
-    // i destructured user {} from users-credential (response)
-    const response = await signInWithGooglePopup();
-    // const { user } = response;
-    // setCurrentUser(user)
-    // await createUserDocumentFromAuth(user);
-  };
+  const [spinner, setSpinner] = useState(false);
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
+  const { getUserInfo } = userContext;
 
-  const onSubmit = async ({ email, password }, actions) => {
+  const onSubmit = async (values, actions) => {
     const resolveAfter3Sec = new Promise((resolve) =>
       setTimeout(resolve, 1000)
     );
 
+    const signInInfo = {
+      email: values.email,
+      password: values.password,
+    };
+    setSpinner(true);
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
-        email,
-        password,
-        toast.promise(
-          resolveAfter3Sec,
-          {
-            pending: "Please Wait...",
-          },
-          {
-            type: "info",
-          }
-        )
-      ).then( async(res) => {
-       await getUserInfo(res.user.uid)
-        console.log( "Successful");
-        navigation("/dashboard");
-        toast("Successfully logged in", {
-          position: "bottom-center",
-          type: "success",
-          theme: "dark",
-        });
+      const response = await fetch(`http://localhost:5000/api/loginUser`, {
+        method: "POST",
+        body: JSON.stringify(signInInfo),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+      if (response.ok) {
+        const newUserInfo = await response.json();
+        if (newUserInfo.message === "Authenticated Successfully") {
+          await getUserInfo(newUserInfo.message1);
+          navigate("/dashboard");
+          toast(`Welcome!!!`);
+          setSpinner(false);
+        } else {
+          toast(newUserInfo.message);
+          setSpinner(false);
+        }
+      }
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -75,6 +64,7 @@ const SignIn = () => {
         default:
           console.log(error);
       }
+      setSpinner(false);
     }
 
     actions.resetForm();
@@ -92,8 +82,6 @@ const SignIn = () => {
 
   const { email, password } = values;
 
-  // console.log(errors);
-
   const [showPassword, setShowPassword] = useState(false);
 
   function handlePassword() {
@@ -102,73 +90,95 @@ const SignIn = () => {
 
   return (
     <div className="main-signin-div">
-      <div className="signin-nav">
+      <div
+        className="signin-nav"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
         <Link to="/">
-          <h4> Bento </h4>
+          <h4 style={{ fontSize: "25px" }}> Bento </h4>
         </Link>
-        <div className="spacer"></div>
-        <span>Don't have an account?</span>
-
-        <Link to="/sign-up" style={{ textDecoration: "none" }}>
-          {" "}
-          <button>Sign Up </button>
-        </Link>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span>Don't have an account?</span>
+          <Link to="/sign-up" style={{ textDecoration: "none" }}>
+            <button>Sign Up </button>
+          </Link>
+        </div>
       </div>
-      <div className="signin-div">
-        <p>Sign in to your account</p>
+      <div
+        className="signin-div"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          padding: 0,
+        }}
+      >
+        <div>
+          <p>Sign in to your account</p>
 
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <label>Email</label>
-          <FormInput
-            className="signin-input-field"
-            style={{
-              border: errors.email && touched.email && "1px solid #d4112c",
-            }}
-            label="Email"
-            type="email"
-            required
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="email"
-            value={email}
-          />
-          {errors.email && touched.email && (
-            <p className="error">{errors.email}</p>
-          )}
-
-          <label>Password</label>
-          {password.length > 0 && (
-            <VisibilityOffIcon
-              className="visible"
-              onClick={handlePassword}
-              sx={{ color: "#d4112c" }}
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <label>Email</label>
+            <FormInput
+              className="signin-input-field"
+              style={{
+                border: errors.email && touched.email && "1px solid #d4112c",
+              }}
+              label="Email"
+              type="email"
+              required
+              onChange={handleChange}
+              onBlur={handleBlur}
+              name="email"
+              value={email}
             />
-          )}
-          <FormInput
-            className="signin-input-field"
-            style={{
-              border: errors.email && email.touched && "1px solid #d4112c",
-            }}
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            required
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="password"
-            value={password}
-          />
-          {errors.password && touched.password && (
-            <p className="error">{errors.password}</p>
-          )}
-          <div>
-            <button type="submit" className="first-signin-button">
-              Sign In
-            </button>
-            <button type="button" onClick={googleSignIn}>
-              Google Sign In
-            </button>
-          </div>
-        </form>
+            {errors.email && touched.email && (
+              <p className="error">{errors.email}</p>
+            )}
+            <div
+              className=""
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+              }}
+            >
+              <label>Password</label>
+              {password.length > 0 && (
+                <VisibilityOffIcon
+                  className="visible"
+                  onClick={handlePassword}
+                  sx={{ color: "#d4112c" }}
+                />
+              )}
+              <FormInput
+                className="signin-input-field"
+                style={{
+                  border: errors.email && email.touched && "1px solid #d4112c",
+                }}
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="password"
+                value={password}
+              />
+              {errors.password && touched.password && (
+                <p className="error">{errors.password}</p>
+              )}
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="first-signin-button"
+                style={{ display: "flex", justifyContent: "center", color: spinner && "black" }}
+              >
+                {spinner ? <ButtonLoader /> : "Sign In"}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

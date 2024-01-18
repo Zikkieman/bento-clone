@@ -1,8 +1,4 @@
 .signup-main-div {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  padding: 20px 30%;
 
   h2 {
     font-size: 1.2rem;
@@ -58,7 +54,6 @@
   }
   .signup-last-label {
     margin-left: 0px;
-    // display: block;
   }
 
   .signup-field {
@@ -81,12 +76,10 @@
   @media (max-width: 500px) {
     .signup-field {
       width: 350px;
-      // margin: 0 20px;
     }
 
     select {
       width: 360px;
-      // margin: 0 20px;
     }
   }
 
@@ -195,20 +188,3 @@
   margin-top: -7px;
 }
 
-// input.input-error{
-//   border: 1px solid #d4112c !important;
-// }
-
-
-
-// .dial-code{
-//   position: relative;
-//   top: 200px;
-//   font-size: 0.8rem;
-//   left: 4px;
-// }
-
-// .number{
-//   font-size: 0.8rem;
-//   padding-left: 40px;
-// }

@@ -42,7 +42,7 @@
       color: #0047cc;
       font-size: 0.9rem;
       font-weight: bold;
-      margin-left: 1%;
+      margin-left: 10px;
       background-color: #fff;
       padding: 7px 17px;
       border: solid 1px #7c828d;
@@ -57,7 +57,7 @@
   }
 
   .signin-div {
-    margin: 7% 30%;
+    margin: 7% 0;
     p {
       font-size: 1.2rem;
       font-weight: 600;
@@ -78,11 +78,11 @@
     }
 
     .signin-input-field {
-      width: 400px;
+      width: 510px;
       height: 25px;
       margin-top: 5px;
       margin-bottom: 20px;
-      padding: 7px 14px;
+      padding: 10px 20px;
       border-color: #dfe1e5;
       border-radius: 5px;
       border-style: groove;
@@ -96,6 +96,10 @@
       .signin-input-field {
         width: 310px;
         display: inline-block;
+      }
+
+      .first-signin-button {
+        width: 310px;
       }
     }
 
@@ -116,24 +120,10 @@
 
     .visible {
       color: #d4112c;
-      margin-top: 0px;
-      position: relative;
-      top: 43px;
-      left: 330px;
-    }
-
-    @media (max-width: 500px) {
-      .visible {
-        position: relative;
-        left: 240px;
-      }
-    }
-
-    @media (min-width: 550px) and (max-width: 700px) {
-      .visible {
-        position: relative;
-        left: 240px;
-      }
+      position: absolute;
+      align-self: flex-end;
+      bottom: 33px;
+      margin-right: 10px;
     }
 
     button {
@@ -147,7 +137,14 @@
     }
 
     .first-signin-button {
-      margin-right: 20px;
+      width: 555px;
+      padding: 15px 0;
+    }
+
+    @media (max-width: 800px) {
+      .first-signin-button {
+        width: 355px;
+      }
     }
   }
 
@@ -170,4 +167,8 @@
   }
 }
 
-
+@media (max-width: 500px) {
+  .main-signin-div {
+    padding: 10px 0%;
+  }
+}

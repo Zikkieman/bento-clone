@@ -1,4 +1,3 @@
-// import { useMediaQuery, useTheme } from "@mui/material";
 import "./BannerStyles.css";
 import globe from "../../images/asset 0.png";
 import Grid from "@mui/material/Grid";

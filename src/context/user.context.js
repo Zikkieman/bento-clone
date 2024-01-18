@@ -40,13 +40,10 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(getUserDetails);
   const [userProfile, setUserProfile] = useState(getInitialState);
 
-  const getUserInfo = async (uid) => {
-      const docRef = doc(db, "users", uid);
-      const profile = await getDoc(docRef);
-      const UserData = profile.data();
-      localStorage.setItem("userDetails", JSON.stringify(currentUser));
-      localStorage.setItem("userInfo", JSON.stringify(UserData));
-       setUserProfile(UserData);
+  const getUserInfo = async (userInfo) => {
+      // localStorage.setItem("userDetails", JSON.stringify(currentUser));
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+       setUserProfile(userInfo);
     };
 
   const value = { currentUser, setCurrentUser, userProfile, getUserInfo };

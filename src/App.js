@@ -1,5 +1,5 @@
-import { Main } from "./components/mainpage/MainComponent";
-import { Navbar } from "./components/navbar/NavComponent";
+import { Main } from "./components/mainpage/MainComponent.js";
+import { Navbar } from "./components/navbar/NavComponent.js";
 import { Routes, Route, Switch } from "react-router-dom";
 import SignIn from "./components/routes/Sign-In/signin.component";
 import AcctType from "./components/acct-type/acct-type.component";

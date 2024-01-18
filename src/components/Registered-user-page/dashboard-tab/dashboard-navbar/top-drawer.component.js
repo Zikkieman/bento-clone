@@ -75,7 +75,7 @@ function Topdrawer() {
             <HomeWorkIcon sx={{ marginRight: "5px" }} />
           </ListItemIcon>
           <ListItemText
-            primary={userProfile.companyName}
+            primary={userProfile.company}
             primaryTypographyProps={{
               fontSize: "0.8rem",
               color: "gray",

@@ -1,6 +1,4 @@
 import { initializeApp } from "firebase/app";
-
-import { useEffect, useState, useContext } from "react";
 import {
   getAuth,
   signInWithRedirect,
@@ -16,9 +14,6 @@ import {
   doc,
   getDoc,
   setDoc,
-  collection,
-  query,
-  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -27,7 +22,7 @@ const firebaseConfig = {
   projectId: "bento-portfolio-db",
   storageBucket: "bento-portfolio-db.appspot.com",
   messagingSenderId: "848196973829",
-  appId: "1:848196973829:web:52719713c44f444976b36c",
+  appId: "1:848196973829:web:52719713c44f444976b36c"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -55,14 +50,7 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
 
   const userDocRef = doc(db, "users", userAuth.uid);
-  // console.log(userDocRef);
   const userSnapshot = await getDoc(userDocRef);
-  // console.log(userID)
-  // console.log(userSnapshot.data())
-  // console.log(userSnapshot);
-  // console.log(userSnapshot.exists());
-  //   creating userDocRef is just to check if there is a similar doc created already in the database
-  // if a similar doc exists then just return otherwise create a new user
 
   if (!userSnapshot.exists()) {
     const { displayName, email, country, companyName } = userAuth;
@@ -87,12 +75,6 @@ export const createUserDocumentFromAuth = async (
   // console.log(userDocRef.data())
 };
 
-// export const getCategoriesAndDocuments = async (userId) => {
-//   const collectionRef = collection(db, "users", userId);
-//   const q = query(collectionRef);
-//   const querySnapshot = await getDocs(q);
-//   console.log(querySnapshot);
-// };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
@@ -110,6 +92,3 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
-
-
-

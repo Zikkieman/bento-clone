@@ -179,7 +179,7 @@ function DashNav() {
                 <div className="user-details">
                   <span className="user-name">{userProfile.displayName}</span>
                   <span className="user-company">
-                    {userProfile.companyName}
+                    {userProfile.company}
                   </span>
                 </div>
               </div>
