@@ -9,6 +9,7 @@ div.spinner {
     border-style: solid;
     animation: spin 1s linear infinite; /* Spin animation */
     margin: 0 10px;
+    color: rgb(3, 3, 53)
   }
   
   /* Spin Animation */

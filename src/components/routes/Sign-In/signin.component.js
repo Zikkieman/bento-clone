@@ -172,7 +172,7 @@ const SignIn = () => {
               <button
                 type="submit"
                 className="first-signin-button"
-                style={{ display: "flex", justifyContent: "center", color: spinner && "black" }}
+                style={{ display: "flex", justifyContent: "center", }}
               >
                 {spinner ? <ButtonLoader /> : "Sign In"}
               </button>
