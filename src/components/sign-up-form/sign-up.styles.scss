@@ -1,5 +1,4 @@
 .signup-main-div {
-
   h2 {
     font-size: 1.2rem;
     font-weight: 500;
@@ -17,34 +16,36 @@
 
   .visible {
     color: #d4112c;
-    position: relative;
-    top: 39px;
-    left: 350px;
-    margin: 0;
+    position: absolute;
+    align-self: flex-end;
+    bottom: 33px;
+    margin-right: 20px;
   }
 
   @media (max-width: 550px) {
     .visible {
-      position: relative;
-      top: 39px;
-      left: 240px;
     }
+    // .visible {
+    //   position: relative;
+    //   top: 39px;
+    //   left: 240px;
+    // }
   }
 
-  .visible-sec {
-    color: #d4112c;
-    position: relative;
-    top: 39px;
-    left: 290px;
-    margin: 0;
-  }
+  // .visible-sec {
+  //   color: #d4112c;
+  //   position: relative;
+  //   top: 39px;
+  //   left: 290px;
+  //   margin: 0;
+  // }
 
   @media (max-width: 550px) {
-    .visible-sec {
-      position: relative;
-      top: 39px;
-      left: 180px;
-    }
+    // .visible-sec {
+    //   position: relative;
+    //   top: 39px;
+    //   left: 180px;
+    // }
   }
 
   label {
@@ -57,39 +58,80 @@
   }
 
   .signup-field {
-    margin: 5px 0 10px 0;
-    width: 450px;
-    height: 30px;
-  
+    width: 510px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-color: #dfe1e5;
+    border-radius: 5px;
+    border-style: groove;
+    // display: block;
   }
 
   select {
     display: block;
-    width: 460px;
+    width: 555px;
     height: 40px;
     margin: 5px 0 10px 0;
+    border-color: #dfe1e5;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 2px #dfe1e5 solid;
     .first-option {
       color: red;
     }
   }
 
-  @media (max-width: 500px) {
-    .signup-field {
-      width: 350px;
-    }
-
-    select {
-      width: 360px;
-    }
+  .form-button {
+    padding: 15px 20px;
+    border-style: none;
+    color: #fff;
+    background-color: #0047cc;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 550px;
   }
+
+  .agree-terms{
+    display: inline-block;
+  }
+
 
   @media (max-width: 365px) {
     .signup-field {
       width: 300px;
     }
+  }
 
-    select {
+  @media (max-width: 800px) {
+    .signup-field {
       width: 310px;
+    }
+
+    .agree-terms{
+      width: 340px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    select {
+      width: 350px;
+    }
+
+    .form-button {
+      width: 350px;
+    }
+  }
+
+  @media (max-width: 365px) {
+    select {
+      width: 350px;
+    }
+
+    .form-button {
+      width: 350px;
     }
   }
 
@@ -187,4 +229,3 @@
   text-align: left;
   margin-top: -7px;
 }
-

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up.styles.scss";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { MdOutlineVisibilityOff } from "react-icons/md";
+import { MdOutlineVisibility } from "react-icons/md";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
@@ -16,6 +17,9 @@ const SignUpForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreement, setAgreement] = useState(false);
   const [spinner, setSpinner] = useState(false);
+  const [visibilityIcon, setVisibilityIcon] = useState(false);
+  const [secVisibilityIcon, setSecVisibilityIcon] = useState(false);
+
   function handlePassword() {
     setShowPassword(!showPassword);
   }
@@ -165,6 +169,8 @@ const SignUpForm = () => {
                 <select
                   required
                   style={{
+                    paddingTop: "20px",
+                    paddingBottom: "20px",
                     border:
                       errors.country && touched.country && "1px solid #d4112c",
                   }}
@@ -172,6 +178,7 @@ const SignUpForm = () => {
                   onBlur={handleBlur}
                   id="country"
                   value={country}
+                  // className="signup-field"
                 >
                   <option
                     value=""
@@ -248,82 +255,140 @@ const SignUpForm = () => {
                 {errors.number && touched.number && (
                   <p className="error">{errors.number}</p>
                 )}
-
-                <label>Password</label>
-                {password.length > 0 && (
-                  <VisibilityOffIcon
-                    sx={{ margin: "0px" }}
-                    className="visible"
-                    onClick={handlePassword}
-                  />
-                )}
-                <FormInput
-                  className={`errors.companyName && "input-error"  signup-field`}
-                  label="Password"
+                <div
                   style={{
-                    border:
-                      errors.password &&
-                      touched.password &&
-                      "1px solid #d4112c",
+                    display: "flex",
+                    flexDirection: "column",
+                    position: "relative",
                   }}
-                  type={showPassword ? "text" : "password"}
-                  required
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  id="password"
-                  value={password}
-                />
+                >
+                  <label>Password</label>
+                  <div
+                    onClick={() => setVisibilityIcon(!visibilityIcon)}
+                    className="visible"
+                  >
+                    {visibilityIcon ? (
+                      <>
+                        {password.length > 0 && (
+                          <MdOutlineVisibility
+                            size={20}
+                            sx={{ margin: "0px" }}
+                            onClick={handlePassword}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {password.length > 0 && (
+                          <MdOutlineVisibilityOff
+                            size={20}
+                            sx={{ margin: "0px" }}
+                            onClick={handlePassword}
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
+
+                  <FormInput
+                    className={`errors.companyName && "input-error"  signup-field`}
+                    label="Password"
+                    style={{
+                      border:
+                        errors.password &&
+                        touched.password &&
+                        "1px solid #d4112c",
+                    }}
+                    type={showPassword ? "text" : "password"}
+                    required
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id="password"
+                    value={password}
+                  />
+                </div>
                 {errors.password && touched.password && (
                   <p className="error">{errors.password}</p>
                 )}
-                <label className="signup-last-label">Confirm Password</label>
-                {confirmPassword.length > 0 && (
-                  <VisibilityOffIcon
-                    sx={{ margin: "0px" }}
-                    className="visible-sec"
-                    onClick={handleConfirmPassword}
-                  />
-                )}
-                <FormInput
-                  className="signup-field"
-                  label="Confirm Password"
+                <div
                   style={{
-                    border:
-                      errors.confirmPassword &&
-                      touched.confirmPassword &&
-                      "1px solid #d4112c",
+                    display: "flex",
+                    flexDirection: "column",
+                    position: "relative",
                   }}
-                  type={showConfirmPassword ? "text" : "password"}
-                  required
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  id="confirmPassword"
-                  value={confirmPassword}
-                />
+                >
+                  <label className="signup-last-label">Confirm Password</label>
+                  <div
+                    onClick={() => setSecVisibilityIcon(!secVisibilityIcon)}
+                    className="visible"
+                  >
+                    {!secVisibilityIcon ? (
+                      <>
+                        {confirmPassword.length > 0 && (
+                         
+                          <MdOutlineVisibility
+                          size={20}
+                          sx={{ margin: "0px" }}
+                          onClick={handlePassword}
+                        />
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {confirmPassword.length > 0 && (
+                          <MdOutlineVisibilityOff
+                            size={20}
+                            sx={{ margin: "0px" }}
+                            onClick={handlePassword}
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
+                  <FormInput
+                    className="signup-field"
+                    label="Confirm Password"
+                    style={{
+                      border:
+                        errors.confirmPassword &&
+                        touched.confirmPassword &&
+                        "1px solid #d4112c",
+                    }}
+                    type={showConfirmPassword ? "text" : "password"}
+                    required
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id="confirmPassword"
+                    value={confirmPassword}
+                  />
+                </div>
                 {errors.confirmPassword && touched.confirmPassword && (
                   <p className="error">{errors.confirmPassword}</p>
                 )}
 
-                <div className="signup-term-condition">
+                <div
+                  className="signup-term-condition"
+                  style={{ display: "flex" }}
+                >
                   <input
                     type="checkbox"
                     name="agreement"
                     onChange={handleAgreement}
                   />
-                  <p>
+                  <p className="agree-terms">
                     I have read and agree to Bento’s <span>Terms of Use</span>{" "}
                     and <span>Privacy policy.</span>
                   </p>
                 </div>
-                <Button
-                  className="signup-button"
-                  type="submit"
-                  style={{ paddingTop: "10px", paddingBottom: "10px" }}
-                  disabled={!agreement}
-                  // disabled={isSubmitting}
-                >
-                  {spinner ? <ButtonLoader /> : "Sign Up"}
-                </Button>
+                <div>
+                  <button
+                    type="submit"
+                    className="form-button"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    {spinner ? <ButtonLoader /> : "Sign up"}
+                  </button>
+                </div>
               </form>
             </div>
           </div>

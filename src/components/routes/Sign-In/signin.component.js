@@ -2,7 +2,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../../context/user.context";
 import "./signin.style.scss";
 import FormInput from "../../form-input/form-input.component";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { MdOutlineVisibilityOff } from "react-icons/md";
+import { MdOutlineVisibility } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -11,6 +12,7 @@ import ButtonLoader from "../../loader/spinner";
 
 const SignIn = () => {
   const [spinner, setSpinner] = useState(false);
+  const [visibilityIcon, setVisibilityIcon] = useState(false);
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
   const { getUserInfo } = userContext;
@@ -144,13 +146,32 @@ const SignIn = () => {
               }}
             >
               <label>Password</label>
-              {password.length > 0 && (
-                <VisibilityOffIcon
-                  className="visible"
-                  onClick={handlePassword}
-                  sx={{ color: "#d4112c" }}
-                />
-              )}
+              <div
+                onClick={() => setVisibilityIcon(!visibilityIcon)}
+                className="visible"
+              >
+                {!visibilityIcon ? (
+                  <>
+                    {password.length > 0 && (
+                      <MdOutlineVisibility
+                        size={20}
+                        sx={{ margin: "0px" }}
+                        onClick={handlePassword}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {password.length > 0 && (
+                      <MdOutlineVisibilityOff
+                        size={20}
+                        sx={{ margin: "0px" }}
+                        onClick={handlePassword}
+                      />
+                    )}
+                  </>
+                )}
+              </div>
               <FormInput
                 className="signin-input-field"
                 style={{
@@ -172,7 +193,7 @@ const SignIn = () => {
               <button
                 type="submit"
                 className="first-signin-button"
-                style={{ display: "flex", justifyContent: "center", }}
+                style={{ display: "flex", justifyContent: "center" }}
               >
                 {spinner ? <ButtonLoader /> : "Sign In"}
               </button>
