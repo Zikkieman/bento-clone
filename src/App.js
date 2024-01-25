@@ -1,6 +1,6 @@
 import { Main } from "./components/mainpage/MainComponent.js";
 import { Navbar } from "./components/navbar/NavComponent.js";
-import { Routes, Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import SignIn from "./components/routes/Sign-In/signin.component";
 import AcctType from "./components/acct-type/acct-type.component";
 import SignUpForm from "./components/sign-up-form/sign-up.component";
@@ -12,7 +12,7 @@ import Remittances from "./components/Registered-user-page/dashboard-tab/tab-com
 import Benefit from "./components/Registered-user-page/dashboard-tab/tab-components/benefit-comp/benefit.component";
 import Vault from "./components/Registered-user-page/dashboard-tab/tab-components/vault-comp/vault.component";
 import PrivateRoutes from "./components/privateRoutes/private";
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 
 
 function App() {

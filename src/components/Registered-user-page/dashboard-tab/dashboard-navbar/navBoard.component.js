@@ -15,7 +15,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DrawerComponent from "./drawer.component";
 import "./navBoard.styles.scss";
 import Topdrawer from "./top-drawer.component";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import NavDropdown from "./nav-dropdown/navDropdown.comp";
 

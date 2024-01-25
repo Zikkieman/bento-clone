@@ -5,7 +5,6 @@ import "./sign-up.styles.scss";
 import { MdOutlineVisibilityOff } from "react-icons/md";
 import { MdOutlineVisibility } from "react-icons/md";
 import { toast } from "react-toastify";
-import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import { basicSchema } from "../../Yup-schema";
 import ButtonLoader from "../loader/spinner";
@@ -48,7 +47,7 @@ const SignUpForm = () => {
     }
     setSpinner(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/newUser`, {
+      const response = await fetch(`https://bento-clone.vercel.app/api/newUser`, {
         method: "POST",
         body: JSON.stringify(signupInfo),
         headers: {
@@ -169,15 +168,13 @@ const SignUpForm = () => {
                 <select
                   required
                   style={{
-                    paddingTop: "20px",
-                    paddingBottom: "20px",
+                    height: "50px",
                     border:
                       errors.country && touched.country && "1px solid #d4112c",
                   }}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   id="country"
-                  value={country}
                   // className="signup-field"
                 >
                   <option
@@ -325,12 +322,11 @@ const SignUpForm = () => {
                     {!secVisibilityIcon ? (
                       <>
                         {confirmPassword.length > 0 && (
-                         
                           <MdOutlineVisibility
-                          size={20}
-                          sx={{ margin: "0px" }}
-                          onClick={handlePassword}
-                        />
+                            size={20}
+                            sx={{ margin: "0px" }}
+                            onClick={handlePassword}
+                          />
                         )}
                       </>
                     ) : (
