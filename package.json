@@ -37,6 +37,7 @@
     "eject": "react-scripts eject",
     "type": "module",
     "main": "index.js"
+    
   },
   "eslintConfig": {
     "extends": [

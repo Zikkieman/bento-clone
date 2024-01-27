@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-const createUser = require("../api/newUser.js")
-const loginUser = require("../api/loginUser.js")
+const createUser = require("../src/api/newUser.js")
+const loginUser = require("../src/api/loginUser.js")
 
 const app = express();
 const port = 5000;

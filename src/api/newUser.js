@@ -34,6 +34,7 @@ const User = mongoose.models.User ?? mongoose.model("User", userSchema);
 
 router.post("/", async (req, res) => {
   const signUpInfo = req.body;
+  console.log(signUpInfo)
   const { companyName, country, number, displayName, email, password } =
     signUpInfo;
 
