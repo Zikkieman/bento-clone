@@ -48,7 +48,7 @@ const SignUpForm = () => {
     setSpinner(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/newUser`,
+        `https://bento-clone-backend.vercel.app/api/newUser`,
         {
           method: "POST",
           body: JSON.stringify(signupInfo),

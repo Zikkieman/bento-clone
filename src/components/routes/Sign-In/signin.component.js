@@ -28,7 +28,7 @@ const SignIn = () => {
     };
     setSpinner(true);
     try {
-      const response = await fetch(`https://bento-clone.vercel.app/api/loginUser`, {
+      const response = await fetch(`https://bento-clone-backend.vercel.app/api/loginUser`, {
         method: "POST",
         body: JSON.stringify(signInInfo),
         headers: {
