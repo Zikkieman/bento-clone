@@ -47,13 +47,16 @@ const SignUpForm = () => {
     }
     setSpinner(true);
     try {
-      const response = await fetch(`https://bento-clone.vercel.app/api/newUser`, {
-        method: "POST",
-        body: JSON.stringify(signupInfo),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://bento-clone.vercel.app/api/newUser`,
+        {
+          method: "POST",
+          body: JSON.stringify(signupInfo),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.ok) {
         const newUserInfo = await response.json();
         if (newUserInfo.message === "Successfully Registered") {
@@ -102,7 +105,7 @@ const SignUpForm = () => {
   } = values;
 
   return (
-    <div>
+    <div >
       <div className="accttype-main-div">
         <div
           className="acctype-nav"
@@ -134,7 +137,7 @@ const SignUpForm = () => {
             alignItems: "center",
           }}
         >
-          <div>
+          <div className="form-wrapper">
             <Link to="/accttype">
               <button className="signup-lesser-than">&#60;</button>
             </Link>
@@ -267,7 +270,7 @@ const SignUpForm = () => {
                     {visibilityIcon ? (
                       <>
                         {password.length > 0 && (
-                          <MdOutlineVisibility
+                          <MdOutlineVisibilityOff
                             size={20}
                             sx={{ margin: "0px" }}
                             onClick={handlePassword}
@@ -277,7 +280,7 @@ const SignUpForm = () => {
                     ) : (
                       <>
                         {password.length > 0 && (
-                          <MdOutlineVisibilityOff
+                          <MdOutlineVisibility
                             size={20}
                             sx={{ margin: "0px" }}
                             onClick={handlePassword}
@@ -319,7 +322,7 @@ const SignUpForm = () => {
                     onClick={() => setSecVisibilityIcon(!secVisibilityIcon)}
                     className="visible"
                   >
-                    {!secVisibilityIcon ? (
+                    {secVisibilityIcon ? (
                       <>
                         {confirmPassword.length > 0 && (
                           <MdOutlineVisibility
@@ -350,7 +353,7 @@ const SignUpForm = () => {
                         touched.confirmPassword &&
                         "1px solid #d4112c",
                     }}
-                    type={showConfirmPassword ? "text" : "password"}
+                    type={secVisibilityIcon ? "text" : "password"}
                     required
                     onChange={handleChange}
                     onBlur={handleBlur}

@@ -1,4 +1,8 @@
 .signup-main-div {
+
+  .form-wrapper{
+    margin-left: 20px;
+  }
   h2 {
     font-size: 1.2rem;
     font-weight: 500;
@@ -22,32 +26,6 @@
     margin-right: 20px;
   }
 
-  @media (max-width: 550px) {
-    .visible {
-    }
-    // .visible {
-    //   position: relative;
-    //   top: 39px;
-    //   left: 240px;
-    // }
-  }
-
-  // .visible-sec {
-  //   color: #d4112c;
-  //   position: relative;
-  //   top: 39px;
-  //   left: 290px;
-  //   margin: 0;
-  // }
-
-  @media (max-width: 550px) {
-    // .visible-sec {
-    //   position: relative;
-    //   top: 39px;
-    //   left: 180px;
-    // }
-  }
-
   label {
     font-size: 0.9rem;
     font-weight: 600;
@@ -62,18 +40,18 @@
     height: 25px;
     margin-top: 5px;
     margin-bottom: 20px;
+    // margin-left: 15px;
     padding: 10px 20px;
     border-color: #dfe1e5;
     border-radius: 5px;
     border-style: groove;
-    // display: block;
   }
 
   select {
     display: block;
     width: 555px;
     height: 40px;
-    margin: 5px 0 10px 0;
+    margin: 5px 0 10px 0px;
     border-color: #dfe1e5;
     border-radius: 5px;
     padding: 10px 20px;
@@ -94,15 +72,8 @@
     width: 550px;
   }
 
-  .agree-terms{
+  .agree-terms {
     display: inline-block;
-  }
-
-
-  @media (max-width: 365px) {
-    .signup-field {
-      width: 300px;
-    }
   }
 
   @media (max-width: 800px) {
@@ -110,8 +81,14 @@
       width: 310px;
     }
 
-    .agree-terms{
+    .agree-terms {
       width: 340px;
+    }
+  }
+
+  @media (max-width: 365px) {
+    .signup-field {
+      width: 290px;
     }
   }
 
@@ -127,7 +104,7 @@
 
   @media (max-width: 365px) {
     select {
-      width: 350px;
+      width: 335px;
     }
 
     .form-button {
