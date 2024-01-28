@@ -154,6 +154,12 @@
         color: #0047cc;
       }
     }
+
+    @media  (max-width: 800px) {
+      p {
+        max-width: 280px;
+      }
+    }
   }
   .signup-button {
     background-color: #0047cc;
@@ -174,6 +180,8 @@
       padding: 5px 200px;
     }
   }
+
+  
 }
 
 .error {
