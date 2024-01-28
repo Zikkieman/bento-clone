@@ -1,6 +1,5 @@
 .signup-main-div {
-
-  .form-wrapper{
+  .form-wrapper {
     margin-left: 20px;
   }
   h2 {
@@ -40,8 +39,7 @@
     height: 25px;
     margin-top: 5px;
     margin-bottom: 20px;
-    // margin-left: 15px;
-    padding: 10px 20px;
+    padding: 10px 8px;
     border-color: #dfe1e5;
     border-radius: 5px;
     border-style: groove;
@@ -49,13 +47,12 @@
 
   select {
     display: block;
-    width: 555px;
+    width: 530px;
     height: 40px;
     margin: 5px 0 10px 0px;
-    border-color: #dfe1e5;
     border-radius: 5px;
-    padding: 10px 20px;
-    border: 2px #dfe1e5 solid;
+    padding: 10px 8px;
+    border: 2px #bcbdc0 solid;
     .first-option {
       color: red;
     }
@@ -69,7 +66,7 @@
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: 600;
-    width: 550px;
+    width: 530px;
   }
 
   .agree-terms {
@@ -84,31 +81,39 @@
     .agree-terms {
       width: 340px;
     }
+
+    .visible {
+      margin-right: 45px;
+    }
   }
 
   @media (max-width: 365px) {
     .signup-field {
       width: 290px;
     }
+
+    .visible {
+      margin-right: 65px;
+    }
   }
 
   @media (max-width: 800px) {
     select {
-      width: 350px;
+      width: 330px;
     }
 
     .form-button {
-      width: 350px;
+      width: 330px;
     }
   }
 
   @media (max-width: 365px) {
     select {
-      width: 335px;
+      width: 310px;
     }
 
     .form-button {
-      width: 350px;
+      width: 310px;
     }
   }
 
@@ -146,7 +151,6 @@
   .signup-button {
     background-color: #0047cc;
     color: #fff;
-    padding: 5px 205px;
     font-size: 0.8rem;
     font-weight: 600;
 
@@ -163,41 +167,6 @@
       padding: 5px 200px;
     }
   }
-
-  @media (min-width: 365px) and (max-width: 500px) {
-    .signup-button {
-      padding: 5px 145px;
-    }
-  }
-
-  @media (max-width: 364px) {
-    .signup-button {
-      padding: 5px 130px;
-    }
-  }
-}
-@media (min-width: 800px) and (max-width: 1100px) {
-  .signup-main-div {
-    padding: 20px 10%;
-  }
-}
-
-@media (min-width: 500px) and (max-width: 1000px) {
-  .signup-main-div {
-    padding: 20px 10%;
-  }
-}
-
-@media (min-width: 365px) and (max-width: 499px) {
-  .signup-main-div {
-    padding: 20px 2%;
-  }
-}
-
-@media (max-width: 364px) {
-  .signup-main-div {
-    padding: 20px 3%;
-  }
 }
 
 .error {
@@ -205,4 +174,5 @@
   font-size: 0.75rem;
   text-align: left;
   margin-top: -7px;
+  max-width: 350px;
 }

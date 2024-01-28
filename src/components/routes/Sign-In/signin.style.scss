@@ -1,36 +1,10 @@
 .main-signin-div {
   padding: 10px 7%;
+  overflow: hidden;
   .signin-nav {
     h4 {
       display: inline-block;
       color: black;
-    }
-
-    .spacer {
-      display: inline-block;
-      height: 10px;
-      width: 70%;
-    }
-
-    @media (max-width: 1000px) {
-      .spacer {
-        display: inline-block;
-        width: 8%;
-      }
-    }
-
-    @media (max-width: 365px) {
-      .spacer {
-        display: inline-block;
-        width: 6%;
-      }
-    }
-
-    @media (min-width: 1020px) and (max-width: 1100px) {
-      .spacer {
-        display: inline-block;
-        width: 63%;
-      }
     }
 
     span {
@@ -143,20 +117,14 @@
 
     @media (max-width: 800px) {
       .first-signin-button {
-        width: 355px;
+        width: 353px;
       }
     }
-  }
 
-  @media (max-width: 1000px) {
-    .signin-div {
-      margin: 7% 2%;
-    }
-  }
-
-  @media (min-width: 1020px) and (max-width: 1050px) {
-    .signin-div {
-      margin: 7% 20%;
+    @media (max-width: 365px) {
+      .first-signin-button {
+        width: 345px;
+      }
     }
   }
 }

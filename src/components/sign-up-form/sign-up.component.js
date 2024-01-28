@@ -12,20 +12,10 @@ import ButtonLoader from "../loader/spinner";
 const SignUpForm = () => {
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreement, setAgreement] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const [visibilityIcon, setVisibilityIcon] = useState(false);
   const [secVisibilityIcon, setSecVisibilityIcon] = useState(false);
-
-  function handlePassword() {
-    setShowPassword(!showPassword);
-  }
-
-  function handleConfirmPassword() {
-    setShowConfirmPassword(!showConfirmPassword);
-  }
 
   function handleAgreement(event) {
     setAgreement(event.target.checked);
@@ -272,8 +262,6 @@ const SignUpForm = () => {
                         {password.length > 0 && (
                           <MdOutlineVisibilityOff
                             size={20}
-                            sx={{ margin: "0px" }}
-                            onClick={handlePassword}
                           />
                         )}
                       </>
@@ -282,8 +270,6 @@ const SignUpForm = () => {
                         {password.length > 0 && (
                           <MdOutlineVisibility
                             size={20}
-                            sx={{ margin: "0px" }}
-                            onClick={handlePassword}
                           />
                         )}
                       </>
@@ -299,7 +285,7 @@ const SignUpForm = () => {
                         touched.password &&
                         "1px solid #d4112c",
                     }}
-                    type={showPassword ? "text" : "password"}
+                    type={visibilityIcon ? "text" : "password"}
                     required
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -327,8 +313,6 @@ const SignUpForm = () => {
                         {confirmPassword.length > 0 && (
                           <MdOutlineVisibility
                             size={20}
-                            sx={{ margin: "0px" }}
-                            onClick={handlePassword}
                           />
                         )}
                       </>
@@ -337,8 +321,6 @@ const SignUpForm = () => {
                         {confirmPassword.length > 0 && (
                           <MdOutlineVisibilityOff
                             size={20}
-                            sx={{ margin: "0px" }}
-                            onClick={handlePassword}
                           />
                         )}
                       </>
